@@ -219,12 +219,15 @@
 
             // Cập nhật giao diện (Đánh dấu đã chọn)
             const questionElement = document.getElementById(`q-${qIndex}`);
-            questionElement.querySelectorAll('.mc-option').forEach(el => {
-                el.classList.remove('selected');
-                if (el.dataset.value === selectedOption) {
-                    el.classList.add('selected');
-                }
-            });
+            // Sử dụng setTimeout để đảm bảo DOM đã cập nhật trước khi thay đổi class
+            setTimeout(() => {
+                questionElement.querySelectorAll('.mc-option').forEach(el => {
+                    el.classList.remove('selected');
+                    if (el.dataset.value === selectedOption) {
+                        el.classList.add('selected');
+                    }
+                });
+            }, 0);
         }
 
         /**
@@ -237,6 +240,7 @@
             // Đảm bảo đáp án là một mảng, ngay cả khi chỉ có 1 ô input
             if (!userAnswers[sectionKey][qIndex]) {
                 const expectedAnswerCount = questionsData[sectionKey][qIndex].answer.length;
+                // Khởi tạo mảng với các giá trị rỗng ('')
                 userAnswers[sectionKey][qIndex] = new Array(expectedAnswerCount).fill('');
             }
 
@@ -251,13 +255,14 @@
             if (question.type === 'mc') {
                 return userAnswer === question.answer;
             } else if (question.type === 'text' || question.type === 'split') {
+                // Nếu chưa có đáp án, coi như sai
                 if (!userAnswer || userAnswer.length !== question.answer.length) return false;
 
                 // Chuyển string input về number để so sánh
                 const userNumericAnswers = userAnswer.map(a => parseInt(a, 10));
 
                 for (let i = 0; i < question.answer.length; i++) {
-                    // Kiểm tra cả NaN (nếu học sinh nhập rỗng)
+                    // Kiểm tra cả NaN (nếu học sinh nhập rỗng) hoặc giá trị khác biệt
                     if (userNumericAnswers[i] !== question.answer[i] || isNaN(userNumericAnswers[i])) {
                         return false;
                     }
@@ -277,10 +282,12 @@
 
             const results = {};
 
+            // Tính điểm cho tất cả các dạng bài (để hiển thị tổng quan)
             Object.keys(questionsData).forEach(sectionKey => {
                 results[sectionKey] = { correct: 0, total: 0 };
                 questionsData[sectionKey].forEach((q, index) => {
-                    const userAnswer = (userAnswers[sectionKey] && userAnswers[sectionKey][index]) || null;
+                    // Lấy đáp án của người dùng cho câu hỏi hiện tại, nếu không có thì trả về null hoặc mảng rỗng
+                    const userAnswer = (userAnswers[sectionKey] && userAnswers[sectionKey][index]) || (q.type === 'mc' ? '' : q.answer.map(() => ''));
                     const isCorrect = checkAnswer(q, userAnswer);
 
                     results[sectionKey].total++;
@@ -344,16 +351,16 @@
 
             // --- Giao diện Câu hỏi ---
             sectionQuestions.forEach((q, index) => {
+                // Khôi phục đáp án người dùng (hoặc mảng rỗng nếu chưa có)
                 const userAnswer = (userAnswers[currentSection] && userAnswers[currentSection][index]) || (q.type === 'mc' ? '' : q.answer.map(() => ''));
                 let qHtml = '';
                 const isCorrect = showResults ? checkAnswer(q, userAnswer) : false;
                 const resultClass = showResults ? (isCorrect ? 'correct-answer' : 'wrong-answer') : '';
+                // Lấy đơn vị cần hiển thị sau đáp án đúng (chỉ áp dụng cho các dạng điền)
                 const unitAfterCorrect = q.type === 'split' ? q.targetUnits.join(' ') : q.q.split('...').pop().trim();
 
                 if (q.type === 'mc') {
                     // Dạng Trắc nghiệm đa lựa chọn
-                    // Tách câu lệnh khỏi câu hỏi để in câu hỏi chính xác.
-                    const questionTextDisplay = q.q.replace(/\(Chọn đáp án đúng\)\s*/, '');
                     
                     qHtml = q.options.map(option => {
                         const isSelected = userAnswer === option;
@@ -385,7 +392,8 @@
                     qHtml = `<p class="font-bold text-gray-800 mb-2">${q.q}</p>${qHtml}`;
                 } else if (q.type === 'text') {
                     // Dạng Toán Gộp/Đổi xuôi/Đổi ngược (1 ô trống)
-                    const val = showResults ? q.answer[0] : (userAnswer.length > 0 ? userAnswer[0] : '');
+                    // Đảm bảo lấy giá trị từ mảng nếu tồn tại
+                    const val = showResults ? q.answer[0] : (Array.isArray(userAnswer) && userAnswer.length > 0 ? userAnswer[0] : '');
                     const borderClass = showResults ? (isCorrect ? 'border-green-600' : 'border-red-600') : 'border-gray-300';
                     const questionParts = q.q.split('...');
                     const unitBefore = questionParts[0] || '';
@@ -394,7 +402,7 @@
                     const inputFields = `
                         <input
                             type="number"
-                            class="w-20 text-center border-2 ${borderClass} rounded-md p-1 font-bold text-blue-800 focus:outlin:::.''e-none focus:ring-2 focus:ring-blue-500 ${showResults ? 'bg-gray-100 cursor-default' : ''}"
+                            class="w-20 text-center border-2 ${borderClass} rounded-md p-1 font-bold text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 ${showResults ? 'bg-gray-100 cursor-default' : ''}"
                             value="${val}"
                             oninput="handleTextInput(${index}, 0, this.value)"
                             ${showResults ? 'readonly' : ''}
@@ -409,7 +417,8 @@
                     let fullQuestionHtml = q.q; // Ví dụ: "2735 kg = "
 
                     for(let i = 0; i < q.answer.length; i++) {
-                        const val = showResults ? q.answer[i] : (userAnswer.length > i ? userAnswer[i] : '');
+                        // Đảm bảo lấy giá trị từ mảng nếu tồn tại
+                        const val = showResults ? q.answer[i] : (Array.isArray(userAnswer) && userAnswer.length > i ? userAnswer[i] : '');
                         const unit = q.targetUnits[i] || ''; // Sử dụng targetUnits để lấy đơn vị
                         const borderClass = showResults ? (isCorrect ? 'border-green-600' : 'border-red-600') : 'border-gray-300';
                         
@@ -432,8 +441,11 @@
                     qHtml = `<div class="flex flex-wrap items-center">${fullQuestionHtml}</div>`;
                 }
 
+                // Hiển thị đáp án đúng nếu sai
                 if (showResults && !isCorrect) {
-                    qHtml += `<p class="mt-2 text-sm text-red-700 font-medium">Đáp án đúng: ${q.answer.join(' ')} ${unitAfterCorrect}</p>`;
+                    // Đối với MC, hiển thị đáp án đúng
+                    const correctAnswerDisplay = q.type === 'mc' ? q.answer : (q.answer.join(' ') + ' ' + unitAfterCorrect).trim();
+                    qHtml += `<p class="mt-2 text-sm text-red-700 font-medium">Đáp án đúng: ${correctAnswerDisplay}</p>`;
                 } else if (showResults && isCorrect) {
                     qHtml += `<p class="mt-2 text-sm text-green-700 font-medium">Bạn trả lời đúng!</p>`;
                 }
