@@ -3,478 +3,441 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5 Dạng Toán Cơ Bản Của Đổi Đơn Vị Đo Khối Lượng (Lớp 4 A)</title>
-    <!-- Tải Tailwind CSS để thiết kế responsive và tối ưu cho di động -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Sáng kiến Kinh nghiệm 2026 - Trường Tiểu học Châu Lộc</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7f7f7;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
+        :root { --primary: #2c3e50; --secondary: #3498db; --accent: #27ae60; --light: #f4f7f6; }
+        body { font-family: 'Times New Roman', Times, serif; line-height: 1.6; margin: 0; color: #333; background: var(--light); }
+        
+        /* Header & Navigation */
+        header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 50px 20px; text-align: center; }
+        .nav-buttons { margin-top: 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        
+        .container { max-width: 900px; margin: 30px auto; padding: 20px; }
+        
+        /* Typography */
+        h1, h2, h3 { color: var(--primary); }
+        .paper-section { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 30px; text-align: justify; }
+        .indent { text-indent: 1cm; }
+        
+        /* Components */
+        .btn { display: inline-block; padding: 10px 25px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: 0.3s; cursor: pointer; border: none; }
+        .btn-pdf { background: #e74c3c; color: white; }
+        .btn-print { background: var(--accent); color: white; }
+        .btn-source { background: var(--primary); color: white; }
+        .btn:hover { opacity: 0.8; transform: translateY(-2px); }
+
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        th { background: #f8f9fa; }
+
+        /* Print Optimization */
+        @media print {
+            header, .nav-buttons, .btn, footer, .no-print { display: none !important; }
+            .paper-section { box-shadow: none; padding: 0; margin-bottom: 50px; }
+            body { background: white; font-size: 14pt; }
+            .container { max-width: 100%; }
         }
-        .container {
-            max-width: 768px;
-            width: 100%;
-            padding: 1rem;
-            margin-top: 1rem;
-        }
-        .question-box {
-            background-color: #ffffff;
-            border-left: 5px solid #3b82f6;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .mc-option {
-            display: block;
-            padding: 0.75rem;
-            margin-bottom: 0.5rem;
-            border-radius: 0.5rem;
-            border: 1px solid #d1d5db;
-            cursor: pointer;
-            transition: background-color 0.2s, border-color 0.2s;
-            background-color: #f9fafb;
-        }
-        .mc-option:hover {
-            background-color: #eff6ff;
-            border-color: #60a5fa;
-        }
-        .selected {
-            background-color: #bfdbfe;
-            border-color: #1d4ed8;
-            font-weight: 600;
-        }
-        .correct-answer {
-            background-color: #d1fae5; /* Màu xanh lá cây cho đáp án đúng */
-            border-color: #065f46;
-        }
-        .wrong-answer {
-            background-color: #fee2e2; /* Màu đỏ cho đáp án sai */
-            border-color: #991b1b;
-        }
-        /* Tùy chỉnh input để loại bỏ mũi tên tăng giảm số, giúp giao diện đẹp hơn */
-        input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-        input[type="number"] {
-            -moz-appearance: textfield;
-        }
+        /* CSS chuyên biệt cho trang bìa và ngắt trang */
+@media screen, print {
+    .cover-page {
+        width: 210mm;
+        height: 297mm;
+        padding: 10mm 15mm 10mm 30mm; /* Lề chuẩn đóng gáy */
+        box-sizing: border-box;
+        margin: 0 auto 30px auto;
+        background: white;
+        position: relative;
+    }
+    .cover-border {
+        border: 4px double #000;
+        height: 100%;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+    }
+    .cover-header { text-align: center; font-size: 14pt; font-weight: bold; line-height: 1.5; }
+    .cover-title-box { text-align: center; margin-top: 50mm; width: 100%; }
+    .cover-label { font-size: 16pt; font-weight: bold; margin-bottom: 20px; }
+    .cover-subject { font-size: 14pt; font-weight: bold; text-transform: uppercase; line-height: 1.4; padding: 0 10px; }
+    .cover-info { margin-top: 50mm; width: 100%; padding-left: 45mm; font-size: 14pt; line-height: 2; text-align: left; }
+    .cover-footer { font-size: 14pt; font-weight: bold; margin-bottom: 10mm; }
+    
+    /* Lệnh ngắt trang quan trọng */
+    .page-break { page-break-after: always; clear: both; }
+}
+
+@media print {
+    body { background: none; }
+    .cover-page { margin: 0; box-shadow: none; }
+}
+
     </style>
 </head>
 <body>
 
-    <div id="quiz-container" class="container">
-        <!-- Tiêu đề -->
-        <header class="text-center mb-6">
-            <h1 class="text-2xl font-bold text-gray-800">5 Dạng Toán Cơ Bản Của Đổi Đơn Vị Đo Khối Lượng (Lớp 4 A)</h1>
-            <p class="text-sm text-gray-500">Bài kiểm tra trực tuyến | Chuyên gia giáo dục tiểu học thiết kế</p>
-        </header>
-
-        <!-- Thanh chuyển đổi dạng bài -->
-        <div id="navigation" class="flex flex-wrap justify-center gap-2 mb-6 p-3 bg-white rounded-xl shadow-lg">
-            <!-- Các nút chuyển dạng bài sẽ được thêm bằng JS -->
+<header>
+    <h1>TRƯỜNG TIỂU HỌC CHÂU LỘC</h1>
+    <p>Triển khai Kế hoạch viết Sáng kiến kinh nghiệm năm học 2025-2026</p>
+    <div class="nav-buttons">
+        <a href="link-file-pdf-cua-ban.pdf" class="btn btn-pdf" target="_blank"><i class="fas fa-file-pdf"></i> Tải bản PDF</a>
+        <button onclick="window.print()" class="btn btn-print"><i class="fas fa-print"></i> In Sáng kiến</button>
+        <a href="https://phanvantuyen283.github.io/mi_ni_lms/ class="btn btn-source"><i class="fab fa-github"></i> Source Code</a>
+    </div>
+</header>
+<div class="cover-page">
+    <div class="cover-border">
+        <div class="cover-header">
+            PHÒNG VĂN HÓA XÃ HỘI XÃ TRIỆU LỘC<br>
+            TRƯỜNG TIỂU HỌC CHÂU LỘC<br>
+            <div style="width: 150px; height: 1px; background: #000; margin: 10px auto;"></div>
         </div>
 
-        <!-- Khu vực hiển thị nội dung bài kiểm tra/kết quả -->
-        <div id="quiz-content">
-            <!-- Nội dung bài kiểm tra sẽ được render tại đây -->
+        <div class="cover-title-box">
+            <div class="cover-label"><strong>BÁO CÁO SÁNG KIẾN KINH NGHIỆM</strong></div>
+            <div class="cover-subject">
+                Xây dựng và vận hành hệ thống kiểm tra, đánh giá trực tuyến (Mini-LMS) nhằm nâng cao hiệu quả ôn tập đa môn và phát triển năng lực số cho học sinh lớp 4
+            </div>
+        </div>
+
+        <div class="cover-info">
+            <strong>Lĩnh vực:</strong> Ứng dụng Công nghệ thông tin<br>
+            <strong>Tác giả:</strong>  Phan Văn Tuyến<br>
+            <strong>Đơn vị:</strong> Trường Tiểu học Châu Lộc
+        </div>
+
+        <div class="cover-footer">
+            TRIỆU LỘC, NĂM 2026
         </div>
     </div>
+</div>
+<div class="page-break"></div> 
 
-    <script>
-        // --- Dữ liệu Bài kiểm tra (ĐÃ CẬP NHẬT DẠNG 5) ---
-        const commonOptions = ['A. Hàng nghìn', 'B. Hàng trăm', 'C. Hàng chục', 'D. Hàng đơn vị'];
 
-        const questionsData = {
-            'Dạng 1: Toán Gộp': [
-                { q: '2 tấn 3 tạ = ... tạ', type: 'text', answer: [23] },
-                { q: '4 tạ 5 yến = ... yến', type: 'text', answer: [45] },
-                { q: '7 yến 8 kg = ... kg', type: 'text', answer: [78] },
-                { q: '1 tấn 5 tạ 2 yến = ... yến', type: 'text', answer: [152] },
-                { q: '3 tạ 15 kg = ... kg', type: 'text', answer: [315] },
-                { q: '6 tấn 70 kg = ... kg', type: 'text', answer: [6070] },
-                { q: '1 tạ 8 yến 9 kg = ... kg', type: 'text', answer: [189] },
-                { q: '12 tạ 5 yến = ... yến', type: 'text', answer: [125] },
-                { q: '3 tấn 4 yến = ... kg', type: 'text', answer: [3040] },
-                { q: '15 yến 3 kg = ... kg', type: 'text', answer: [153] },
-            ],
-            // Dạng 2 đã được sửa đúng định dạng
-            'Dạng 2: Toán Tách (Đã cập nhật)': [
-                // 2735 kg = 27 tạ 3 yến 5 kg
-                { q: '2735 kg = ', type: 'split', targetUnits: ['tạ', 'yến', 'kg'], answer: [27, 3, 5] },
-                // 5095 kg = 5 tấn 95 kg
-                { q: '5095 kg = ', type: 'split', targetUnits: ['tấn', 'kg'], answer: [5, 95] },
-                // 4326 tạ = 432 tấn 6 tạ
-                { q: '4326 tạ = ', type: 'split', targetUnits: ['tấn', 'tạ'], answer: [432, 6] },
-                // 1504 kg = 15 tạ 4 kg
-                { q: '1504 kg = ', type: 'split', targetUnits: ['tạ', 'kg'], answer: [15, 4] },
-                // 8507 kg = 8 tấn 5 tạ 7 kg 
-                { q: '8507 kg = ', type: 'split', targetUnits: ['tấn', 'tạ', 'kg'], answer: [8, 5, 7] },
-                // 9070 yến = 907 tạ 0 yến
-                { q: '9070 yến = ', type: 'split', targetUnits: ['tạ', 'yến'], answer: [907, 0] },
-                // 304 tạ = 30 tấn 4 tạ
-                { q: '304 tạ = ', type: 'split', targetUnits: ['tấn', 'tạ'], answer: [30, 4] },
-                // 725 kg = 72 yến 5 kg
-                { q: '725 kg = ', type: 'split', targetUnits: ['yến', 'kg'], answer: [72, 5] },
-                // 1500 kg = 15 tạ
-                { q: '1500 kg = ', type: 'split', targetUnits: ['tạ'], answer: [15] },
-                // 4005 yến = 400 tạ 5 yến
-                { q: '4005 yến = ', type: 'split', targetUnits: ['tạ', 'yến'], answer: [400, 5] },
-            ],
-            'Dạng 3: Đổi Xuôi (Lớn → Bé)': [
-                { q: '6 tấn = ... tạ', type: 'text', answer: [60] },
-                { q: '12 tạ = ... kg', type: 'text', answer: [1200] },
-                { q: '8 yến = ... kg', type: 'text', answer: [80] },
-                { q: '4 tấn = ... yến', type: 'text', answer: [400] },
-                { q: '15 tạ = ... yến', type: 'text', answer: [150] },
-                { q: '20 tấn = ... kg', type: 'text', answer: [20000] }, 
-                { q: '3 tạ = ... kg', type: 'text', answer: [300] },
-                { q: '5 yến = ... kg', type: 'text', answer: [50] },
-                { q: '10 tấn = ... tạ', type: 'text', answer: [100] },
-                { q: '7 tạ = ... yến', type: 'text', answer: [70] },
-            ],
-            'Dạng 4: Đổi Ngược (Bé → Lớn)': [
-                { q: '50 kg = ... yến', type: 'text', answer: [5] },
-                { q: '300 tạ = ... tấn', type: 'text', answer: [30] },
-                { q: '4000 kg = ... tạ', type: 'text', answer: [40] },
-                { q: '800 yến = ... tấn', type: 'text', answer: [8] },
-                { q: '70 kg = ... yến', type: 'text', answer: [7] },
-                { q: '90 tạ = ... tấn', type: 'text', answer: [9] },
-                { q: '120 yến = ... tạ', type: 'text', answer: [12] },
-                { q: '25000 kg = ... tấn', type: 'text', answer: [25] },
-                { q: '600 kg = ... yến', type: 'text', answer: [60] },
-                { q: '100 tạ = ... tấn', type: 'text', answer: [10] },
-            ],
-            // Dạng 5 đã được cập nhật với câu lệnh (Chọn đáp án đúng) và các lựa chọn A, B, C, D
-            'Dạng 5: Trắc Nghiệm Đa Lựa Chọn (Đã cập nhật)': [
-                // Q1: Tấn là hàng gì của ki-lô-gam? (1000 lần)
-                { q: '(Chọn đáp án đúng) Tấn là hàng gì của kilôgam?', type: 'mc', options: commonOptions, answer: 'A. Hàng nghìn' },
-                // Q2: Tạ là hàng gì của yến? (10 lần)
-                { q: '(Chọn đáp án đúng) Tạ là hàng gì của yến?', type: 'mc', options: commonOptions, answer: 'C. Hàng chục' },
-                // Q3: Yến là hàng gì của ki-lô-gam? (10 lần)
-                { q: '(Chọn đáp án đúng) Yến là hàng gì của kilôgam?', type: 'mc', options: commonOptions, answer: 'C. Hàng chục' },
-                // Q4: Tấn là hàng gì của yến? (100 lần)
-                { q: '(Chọn đáp án đúng) Tấn là hàng gì của yến?', type: 'mc', options: commonOptions, answer: 'B. Hàng trăm' },
-                // Q5: Tạ là hàng gì của ki-lô-gam? (100 lần)
-                { q: '(Chọn đáp án đúng) Tạ là hàng gì của kilôgam?', type: 'mc', options: commonOptions, answer: 'B. Hàng trăm' },
-                // Q6: Tấn là hàng gì của tạ? (10 lần)
-                { q: '(Chọn đáp án đúng) Tấn là hàng gì của tạ?', type: 'mc', options: commonOptions, answer: 'C. Hàng chục' },
-                // Q7 (Review): Phép đổi đơn vị nào sau đây là **sai**?
-                { q: '(Chọn đáp án đúng) Phép đổi đơn vị nào sau đây là **sai**?', type: 'mc', options: ['1 tấn = 10 tạ', '1 tạ = 10 yến', '1 yến = 10 kg', '1 tấn = 100 tạ'], answer: '1 tấn = 100 tạ' },
-                // Q8 (Review): 2000 kg bằng bao nhiêu tấn?
-                { q: '(Chọn đáp án đúng) 2000 kg bằng bao nhiêu tấn?', type: 'mc', options: ['20 tấn', '2 tấn', '200 tấn', '0.2 tấn'], answer: '2 tấn' },
-                // Q9 (Review): 1 tạ gấp yến bao nhiêu lần?
-                { q: '(Chọn đáp án đúng) 1 tạ gấp 1 yến bao nhiêu lần?', type: 'mc', options: ['10 lần', '100 lần', '1000 lần', '1 lần'], answer: '10 lần' },
-                // Q10 (Review): 5 tấn 5 tạ bằng bao nhiêu tạ?
-                { q: '(Chọn đáp án đúng) 5 tấn 5 tạ bằng bao nhiêu tạ?', type: 'mc', options: ['55 tạ', '505 tạ', '550 tạ', '5005 tạ'], answer: '55 tạ' },
-            ],
-        };
+<div class="container">
+    
+    <div class="paper-section">
+        <h2 style="text-align: center;">PHẦN I: MỞ ĐẦU</h2>
+        <h3>1.1. Lý do chọn đề tài</h3>
+        <p class="indent"><p>Chuyển đổi số trong giáo dục đang chuyển dịch mạnh mẽ từ việc số hóa tài liệu đơn thuần sang việc kiến tạo các môi trường học tập tương tác và phát triển năng lực toàn diện cho học sinh. Đặc biệt, với sự ra đời của Thông tư số 02/2025/TT-BGDĐT ban hành Quy định chuẩn kỹ năng số cho học sinh phổ thông, yêu cầu lồng ghép việc giáo dục năng lực số (An toàn số, Vận hành thiết bị, Giải quyết vấn đề) vào các môn học văn hóa đã trở thành một nhiệm vụ trọng tâm và cấp thiết.</p>
+        <p>Tuy nhiên, trong thực tiễn giảng dạy tại trường tiểu học, giáo viên đang phải đối mặt với nhiều rào cản mang tính hệ thống. <em>Thứ nhất,</em> về mặt sư phạm, quỹ thời gian 35-40 phút cho mỗi tiết học trên lớp là quá ít ỏi để giáo viên vừa truyền tải kiến thức mới, vừa tổ chức ôn tập chuyên sâu và kèm cặp cá nhân hóa cho từng học sinh. <em>Thứ hai,</em> về cơ sở vật chất, sự hạn chế thiết bị thông minh tại trường khiến việc tổ chức cho 100% học sinh đồng loạt thực hành các kỹ năng số là bất khả thi. <em>Thứ ba,</em> về mặt công nghệ, các nền tảng kiểm tra trực tuyến hiện hành của bên thứ ba thường mang tính đóng, thiếu linh hoạt, chứa quảng cáo và không cho phép giáo viên can thiệp sâu vào các thuật toán quản lý (như cơ chế chống gian lận, điều hướng môn học từ xa hay tùy biến phản hồi cảm xúc).</p>
+        <p>Để giải quyết triệt để những mâu thuẫn trên, việc dịch chuyển không gian ôn tập từ lớp học về môi trường trực tuyến tại gia đình thông qua mô hình Học tập kết hợp (Blended Learning) là một hướng đi tất yếu. Vấn đề đặt ra là: Làm thế nào để một giáo viên tiểu học, không có chuyên môn sâu về lập trình, có thể tự thiết kế và làm chủ một hệ thống quản lý học tập quy mô nhỏ (Mini-LMS) đáp ứng đúng triết lý sư phạm của riêng mình?</p>
+        <p>Đứng trước yêu cầu đó, tôi nhận thấy Trí tuệ nhân tạo tạo sinh (Generative AI), đặc biệt là mô hình ngôn ngữ lớn Gemini, mang lại tiềm năng to lớn trong vai trò một trợ lý hỗ trợ lập trình (AI Coding Assistant). Sự kết hợp giữa tư duy sư phạm của giáo viên và khả năng xử lý thuật toán của AI có thể tạo ra những hệ thống giáo dục độc bản, tối ưu hóa quá trình ôn tập đa môn và tạo môi trường thực hành năng lực số tự nhiên cho học sinh ngay tại nhà.</p>
+        <p>Xuất phát từ những cơ sở lý luận và thực tiễn nêu trên, tôi quyết định chọn đề tài: <strong><em>"Xây dựng và vận hành hệ thống kiểm tra, đánh giá trực tuyến (Mini-LMS) nhằm nâng cao hiệu quả ôn tập đa môn và phát triển năng lực số cho học sinh lớp 4"</em></strong> làm sáng kiến kinh nghiệm trong năm học này.</p>
+        <h3>1.2.Mục đích nghiên cứu</h3>
+        <p class="indent">Đề tài được thực hiện nhằm đạt được 3 mục tiêu cốt lõi sau đây</p>
+        <ul>
+        <li><strong>Thứ nhất (Về mặt công nghệ):</strong> Xây dựng thành công quy trình ứng dụng Trí tuệ nhân tạo tạo sinh (mô hình Gemini) làm trợ lý lập trình để thiết kế và vận hành một hệ thống quản lý học tập quy mô nhỏ (Mini-LMS) độc lập. Qua đó, giúp giáo viên làm chủ hoàn toàn các thuật toán đánh giá, cơ chế bảo mật và quản trị dữ liệu học tập của học sinh mà không phụ thuộc vào nền tảng của bên thứ ba.</li>
+        <li><strong>Thứ hai (Về mặt tổ chức sư phạm):</strong> Triển khai hiệu quả mô hình Học tập kết hợp (Blended Learning), dịch chuyển không gian ôn tập kiến thức đa môn từ lớp học về môi trường trực tuyến tại gia đình. Mục đích nhằm giải quyết giới hạn về quỹ thời gian trên lớp, khắc phục tình trạng thiếu hụt thiết bị thực hành tại trường và tạo điều kiện cá nhân hóa nhịp độ học tập cho từng đối tượng học sinh.</li>
+        <li><strong>Thứ ba (Về mặt phát triển năng lực):</strong> Tích hợp và hình thành các thành tố của Năng lực số (bao gồm: An toàn số, Vận hành thiết bị, Giải quyết vấn đề) cho học sinh lớp 4 thông qua các chuỗi thao tác tương tác bắt buộc trên hệ thống Mini-LMS, đáp ứng kịp thời các tiêu chuẩn quy định tại Thông tư 02/2025/TT-BGDĐT.</li>
+        </ul>
+        <h3>1.3. Đối tượng và khách thể nghiên cứu</h3>
+        <ul>
+        <li><strong>Đối tượng nghiên cứu:</strong> Cấu trúc kỹ thuật, quy trình thiết kế và giải pháp vận hành hệ thống kiểm tra trực tuyến quy mô nhỏ (Mini-LMS) phục vụ hoạt động ôn tập đa môn theo mô hình Học tập kết hợp (Blended Learning).</li>
+        <li><strong>Khách thể nghiên cứu:</strong> Quá trình ôn tập kiến thức văn hóa đa môn và thực hành phát triển năng lực số của học sinh lớp 4A, trường Tiểu học Châu Lộc, trong năm học 2025 - 2026.</li>
+        </ul>
+        <h3>1.4. Phương pháp nghiên cứu</h3>
+        <p>Để triển khai đề tài đảm bảo tính khách quan, hệ thống và khoa học, tôi đã phối hợp sử dụng các nhóm phương pháp nghiên cứu sau đây:</p>
+        <ul>
+        <li><strong>Nhóm phương pháp nghiên cứu lý luận:</strong> 
+        <br>Phân tích và tổng hợp các tài liệu khoa học về ứng dụng Trí tuệ nhân tạo tạo sinh (Generative AI) trong giáo dục, lý thuyết về mô hình Học tập kết hợp (Blended Learning) và Hệ thống quản lý học tập (LMS). Đồng thời, nghiên cứu hệ thống văn bản quy phạm pháp luật (đặc biệt là Thông tư 02/2025/TT-BGDĐT và Công văn 3456/BGDĐT-GDPT) làm cơ sở pháp lý và kim chỉ nam cho các định hướng thực nghiệm.
+        </li>
+        <li><strong>Nhóm phương pháp nghiên cứu thực tiễn:</strong>
+        <ul style="margin-top: 8px;">
+        <li style="margin-bottom: 8px;"><em>Phương pháp thực nghiệm sư phạm:</em> Trực tiếp triển khai hệ thống Mini-LMS vào quá trình giao bài tập và tổ chức ôn tập đa môn hằng ngày cho khách thể nghiên cứu (học sinh lớp 4A) nhằm kiểm chứng tính khả thi của mô hình.</li>
+        <li style="margin-bottom: 8px;"><em>Phương pháp quan sát khoa học:</em> Theo dõi có chủ đích hành vi, mức độ tương tác và khả năng xử lý tình huống của học sinh khi thao tác trên môi trường số (tiêu biểu như: quy trình xác thực mã bảo mật, kỹ năng sử dụng tính năng gợi ý hệ thống khi có lỗi sai) để đánh giá sự phát triển năng lực số.</li>
+        </ul>
+        </li>
+        <li><strong>Nhóm phương pháp thống kê toán học và xử lý dữ liệu:</strong> 
+        <br>Sử dụng cơ sở dữ liệu thời gian thực (Google Firebase) để tự động thu thập các tham số định lượng một cách khách quan (bao gồm: thời gian hoàn thành bài, điểm số thực tế, tần suất truy cập). Sau đó, kết hợp phần mềm MS Excel để mã hóa, thống kê, đối chiếu và mô hình hóa dữ liệu nhằm đánh giá hiệu quả trước và sau khi tác động thực nghiệm.
+        </li>
+        </ul>
+        <h3>1.5. Những điểm mới của sáng kiến kinh nghiệm</h3>
+        <p>So với các biện pháp ứng dụng công nghệ thông tin truyền thống trong công tác kiểm tra, đánh giá, đề tài mang 3 điểm mới mang tính hệ thống như sau:</p>
+        <ul>
+        <li><strong>Tính tự chủ công nghệ thông qua Trợ lý AI (Self-hosted by AI):</strong> Lần đầu tiên, một hệ thống giáo dục quy mô nhỏ được thiết kế và vận hành mà không phụ thuộc vào nền tảng trung gian của bên thứ ba. Nhờ sự hỗ trợ lập trình từ mô hình AI tạo sinh (Gemini), giáo viên tự xây dựng mã nguồn (HTML/JS) và quản trị cơ sở dữ liệu đám mây (Google Firebase). Cấu trúc này đảm bảo quyền kiểm soát tuyệt đối về thuật toán đánh giá (như cơ chế chống thực hiện lại bài) và bảo mật dữ liệu học sinh với chi phí vận hành bằng không.</li>
+        <li><strong>Cơ chế "Điều khiển cấu hình từ xa" (Remote Configuration):</strong> Khác với các tệp bài tập hoặc biểu mẫu tĩnh thông thường, hệ thống Mini-LMS có khả năng tương tác theo thời gian thực. Thông qua cơ sở dữ liệu Firebase, giáo viên có quyền tùy biến trạng thái (Enable/Disable) quyền truy cập từng môn học, thay đổi hệ thống câu hỏi bảo mật động nhằm định hướng luồng học tập của học sinh mà không cần can thiệp trực tiếp vào mã nguồn cốt lõi.</li>
+    
+        <li><strong>Môi trường phát triển Năng lực số phi truyền thống:</strong> Đề tài không tách rời việc rèn luyện kỹ năng số thành một môn học hoặc chuyên đề độc lập. Thay vào đó, quy trình hình thành Năng lực số được thiết kế như một chuỗi thao tác bắt buộc; học sinh phải vận dụng kỹ năng An toàn số (xác thực kép) và kỹ năng Giải quyết vấn đề (khai thác thông tin phản hồi từ hệ thống) để có thể hoàn thành các nhiệm vụ ôn tập văn hóa hằng ngày.</li>
+        </ul>
+    </div>
+    <div class="paper-section">
+        <h2 style="text-align: center;">PHẦN II: NỘI DUNG</h2>
+        <h3>2.1. Cơ sở lý luận</h3>
+        <h4>2.1.1. Cơ sở pháp lý về định hướng chuyển đổi số và phát triển năng lực số trong giáo dục phổ thông</h4>
+        <p>Đề tài được xây dựng dựa trên hành lang pháp lý của ngành Giáo dục trong lộ trình chuyển đổi số, tiêu biểu là định hướng tại Công văn số 3456/BGDĐT-GDPT về việc hướng dẫn thực hiện nhiệm vụ giáo dục tiểu học. Đặc biệt, Quyết định và Thông tư số 02/2025/TT-BGDĐT ban hành Quy định chuẩn kỹ năng số cho học sinh phổ thông đã xác lập khung năng lực bắt buộc bao gồm: Khả năng vận hành thiết bị, Đảm bảo an toàn trên môi trường số, và Ứng dụng công nghệ để giải quyết vấn đề học tập. Các văn bản này nhấn mạnh việc phát triển năng lực số không chỉ giới hạn trong môn Tin học mà phải được lồng ghép, tích hợp liên môn vào toàn bộ quá trình tổ chức dạy học và đánh giá thường xuyên.</p>
+        <h4>2.1.2. Cơ sở khoa học về Trí tuệ nhân tạo tạo sinh (Generative AI) và Hệ thống quản lý học tập (LMS)</h4>
+        <p>Trong khoa học máy tính và công nghệ giáo dục, Trí tuệ nhân tạo tạo sinh (điển hình là mô hình ngôn ngữ lớn Gemini) không chỉ đóng vai trò là công cụ truy xuất thông tin mà còn hoạt động như một Trợ lý lập trình (AI Coding Assistant). Khả năng này cho phép chuyển đổi ngôn ngữ tự nhiên (các yêu cầu sư phạm của giáo viên) thành các đoạn mã nguồn phức tạp (HTML, JavaScript). Việc ứng dụng AI làm cầu nối kỹ thuật giúp giáo viên phổ thông có khả năng tự xây dựng và triển khai các Hệ thống quản lý học tập quy mô nhỏ (Mini-LMS) - nền tảng trực tuyến cho phép phân phối nội dung, tổ chức đánh giá và thu thập dữ liệu học tập theo thời gian thực một cách tự chủ (Self-hosted) mà không bị phụ thuộc vào các thiết chế phần mềm đóng gói sẵn.</p>
+        <h4>2.1.3. Lý thuyết về mô hình Học tập kết hợp (Blended Learning) và Cá nhân hóa học tập (Personalized Learning)</h4>
+        <p>Học tập kết hợp (Blended Learning) là mô hình giáo dục tích hợp giữa phương pháp giảng dạy trực tiếp trên lớp (Face-to-Face) và việc tự học qua môi trường trực tuyến (E-learning). Theo thang độ nhận thức Bloom, việc dịch chuyển các nhiệm vụ học tập bậc thấp (như ghi nhớ, tái hiện kiến thức thông qua ôn tập trắc nghiệm) sang nền tảng Mini-LMS tại nhà giúp giải phóng quỹ thời gian trên lớp cho các hoạt động tương tác bậc cao. Hơn nữa, môi trường E-learning cung cấp cơ chế phản hồi tức thì (Instant Feedback) thông qua các hệ thống gợi ý, tạo không gian an toàn để học sinh thực hiện quá trình thử - sai (Trial and Error). Điều này hỗ trợ quá trình cá nhân hóa nhịp độ nhận thức, đặc biệt hiệu quả trong việc bồi dưỡng học sinh tiếp thu chậm, giúp các em đạt được chuẩn kiến thức kỹ năng mà không chịu áp lực từ hiệu ứng đám đông trong môi trường lớp học truyền thống.</p>
+        <h3>2.2. Thực trạng vấn đề trước khi áp dụng sáng kiến kinh nghiệm</h3>
+        <p>Trước khi triển khai hệ thống Mini-LMS và mô hình Học tập kết hợp, công tác tổ chức dạy học, đánh giá thường xuyên và phát triển năng lực số cho học sinh lớp 4A tại đơn vị bộc lộ một số bất cập mang tính hệ thống, cụ thể như sau:</p>
 
-        // --- State Management (Quản lý trạng thái) ---
-        let currentSection = Object.keys(questionsData)[0]; // Bắt đầu từ Dạng 1
-        let userAnswers = {}; // Lưu trữ đáp án của học sinh
-        let showResults = false; // Trạng thái hiển thị kết quả
+        <h4>2.2.1. Thực trạng về công tác tổ chức củng cố kiến thức và cá nhân hóa tiến trình học tập</h4>
+        <p>Với định mức thời gian 35-40 phút/tiết học theo quy định của Chương trình Giáo dục phổ thông 2018, phần lớn thời lượng được sử dụng để tổ chức các hoạt động khám phá và hình thành kiến thức mới. Việc củng cố, ôn luyện kỹ năng giải bài tập đa môn (Toán, Tiếng Việt, Lịch sử - Địa lí, Khoa học...) thường được thực hiện đồng loạt. Phương pháp này bộc lộ hạn chế đối với nhóm học sinh có nhịp độ nhận thức chậm. Các em không có đủ thời gian để thực hiện quá trình tư duy độc lập, dẫn đến việc tiếp thu kiến thức mang tính thụ động, bề mặt và dễ bị lấp liếm bởi hiệu ứng trả lời tập thể. Mức độ phân hóa và cá nhân hóa quá trình ôn tập trên lớp chưa đạt hiệu quả như mong đợi do rào cản về quỹ thời gian và không gian vật lý.</p>
+        <h4>2.2.2. Thực trạng về việc ứng dụng công nghệ thông tin trong đánh giá thường xuyên</h4>
+        <p>Để khắc phục giới hạn thời gian trên lớp, giáo viên đã áp dụng hình thức giao bài tập về nhà thông qua các nền tảng khảo sát trực tuyến có sẵn (như Google Forms, Azota, Quizizz). Tuy nhiên, qua quá trình vận hành, các công cụ này bộc lộ những hạn chế về tính tùy biến cục bộ:</p>
+        <ul>
+        <li><strong>Tính đóng của nền tảng:</strong> Hệ thống được lập trình sẵn với cấu trúc tĩnh, giáo viên không thể can thiệp để thiết lập các thuật toán quản lý riêng biệt (ví dụ: tự động khóa quyền truy cập sau một lần làm bài, hoặc thiết lập các chuỗi âm thanh phản hồi sư phạm đặc thù).</li>
+        <li><strong>Tính phân mảnh dữ liệu:</strong> Giáo viên gặp khó khăn trong việc điều hướng luồng học tập từ xa. Khi muốn giao bài môn Toán và khóa bài môn Tiếng Việt, giáo viên phải thực hiện thao tác thủ công tạo và gửi các liên kết (link) riêng biệt cho từng môn vào từng ngày, gây nhiễu loạn thông tin đối với phụ huynh và học sinh. Không có một hệ thống trung tâm dạng "Cổng thông tin môn học" để điều khiển quyền truy cập theo thời gian thực.</li>
+        </ul>
+        <h4>2.2.3. Thực trạng về mức độ phát triển Năng lực số của học sinh lớp 4A</h4>
+        <p>Thông qua các bài khảo sát định tính đầu năm học và quá trình quan sát thực tế tại các tiết học có ứng dụng công nghệ, mức độ đạt chuẩn kỹ năng số của học sinh còn ở mức thấp:</p>
+        <ul>
+        <li><strong>Về An toàn số:</strong> Học sinh chưa có ý thức tự bảo mật thông tin cá nhân. Thói quen sử dụng các liên kết mở không yêu cầu xác thực khiến các em dễ dàng chia sẻ tài khoản hoặc truy cập nhầm lẫn.</li>
+        <li><strong>Về Giải quyết vấn đề trên môi trường số:</strong> Khi thực hiện các bài tập trực tuyến bị sai lệch kết quả, học sinh thiếu kỹ năng khai thác các tính năng hỗ trợ công nghệ (như công cụ gợi ý - Hint, tra cứu phản hồi tự động) để tự điều chỉnh nhận thức, mà chủ yếu trông chờ vào sự giải đáp trực tiếp từ giáo viên. Điều này cho thấy công nghệ mới chỉ được sử dụng ở tầng thao tác cơ học, chưa chuyển hóa thành công cụ tư duy.</li>
+        </ul>
+        <h3>2.3. Các biện pháp tổ chức thực hiện</h3>
+        <h4>2.3.1. Biện pháp 1: Ứng dụng Trí tuệ nhân tạo (Gemini) làm trợ lý lập trình để thiết kế kiến trúc và vận hành hệ thống Mini-LMS độc lập</h4>
+        <p>Để giải quyết triệt để rào cản về tính đóng và sự phụ thuộc vào các nền tảng kiểm tra trực tuyến của bên thứ ba, tôi đã áp dụng tư duy "Giáo viên tự chủ công nghệ" (Self-hosted). Thông qua việc sử dụng mô hình ngôn ngữ lớn Gemini AI trong vai trò Trợ lý lập trình (AI Coding Assistant), quá trình chuyển hóa kịch bản sư phạm thành hệ thống mã nguồn (Source Code) được thực hiện theo quy trình 3 bước chuẩn hóa như sau:</p>
+        <p><strong>Bước 1: Thiết kế kiến trúc hệ thống bằng Kỹ thuật thiết kế câu lệnh (Prompt Engineering)</strong></p>
+        <p>Thay vì tự viết mã lệnh, tôi đóng vai trò là "Kiến trúc sư hệ thống", thiết lập các câu lệnh (Prompt) yêu cầu Gemini AI khởi tạo cấu trúc thư mục dạng Web Application (HTML/CSS/JS). Cấu trúc tổng thể được hệ thống hóa bao gồm các phân hệ chức năng:</p>
+        <ul>
+        <li><strong>Phân hệ Xác thực (<code>index.html</code>):</strong> Xử lý đăng nhập thông qua mã định danh cá nhân và câu hỏi bảo mật ngẫu nhiên.</li>
+        <li><strong>Phân hệ Điều hướng (<code>Menu.html</code>):</strong> Bảng điều khiển (Dashboard) hiển thị danh sách các môn học (Toán, Tiếng Việt, Khoa học, Lịch sử - Địa lí, Đạo đức, Công nghệ).</li>
+        <li><strong>Phân hệ Xử lý logic cốt lõi (<code>core.js</code>):</strong> Chứa các thuật toán chấm điểm tự động, cung cấp phản hồi sư phạm (hiệu ứng âm thanh, hiển thị khung giải thích lỗi sai) và cơ chế chống gian lận (Anti-retake algorithm).</li>
+        </ul>
+        <p><strong>Bước 2: Tích hợp Cơ sở dữ liệu thời gian thực (Real-time Database) và thiết lập thuật toán bảo mật</strong></p>
+        <p>Để lưu trữ và quản trị tiến trình học tập, tôi sử dụng Google Firebase. Dưới sự hỗ trợ của Gemini AI, tôi đã tiến hành cấu hình tệp <code>config.js</code> để thiết lập luồng giao tiếp dữ liệu hai chiều (Client - Server) giữa giao diện bài tập và cơ sở dữ liệu đám mây. Hai thuật toán quan trọng nhất được mã hóa thành công bao gồm:</p>
+        <table>
+        <tr>
+        <th>Yêu cầu sư phạm (Input Prompt)</th>
+        <th>Giải pháp kỹ thuật từ AI (Output Script)</th>
+        </tr>
+        <tr>
+        <td>Cơ chế chống thực hiện lại bài kiểm tra nhằm đánh giá chính xác năng lực thực tế.</td>
+        <td>Thuật toán trong <code>core.js</code> kiểm tra đối chiếu (Query) mã định danh với dữ liệu trên Firebase. Nếu tồn tại bản ghi điểm số của môn học tương ứng trong ngày, hệ thống sẽ tự động vô hiệu hóa chức năng (Disable button) nộp bài và phát cảnh báo.</td>
+        </tr>
+        <tr>
+        <td>Cơ chế phản hồi tức thì (Instant Feedback) mang tính động viên tâm lý.</td>
+        <td>Sử dụng thư viện JavaScript tạo hiệu ứng pháo hoa (Confetti) kết hợp kích hoạt tệp âm thanh lời khen ngợi của giáo viên định dạng <code>.mp3</code> khi học sinh đạt điểm tối đa.</td>
+        </tr>
+        </table>
 
-        // --- DOM Elements (Các phần tử giao diện) ---
-        const quizContentEl = document.getElementById('quiz-content');
-        const navigationEl = document.getElementById('navigation');
+        <p><strong>Bước 3: Tinh chỉnh Giao diện người dùng (UI) theo nguyên lý Thiết kế đáp ứng (Responsive Design) đa nền tảng</strong></p>
+        <p>Để đảm bảo tính công bằng trong việc tiếp cận và sự linh hoạt của mô hình Học tập kết hợp, hệ thống Mini-LMS được thiết kế để vận hành trơn tru trên đa nền tảng (Cross-platform). Thông qua việc thiết lập các điểm ngắt (Breakpoints) trong tệp <code>style.css</code>, hệ thống tự động nhận diện thiết bị truy cập và điều chỉnh bố cục (Layout) tương thích:</p>
+        <ul>
+        <li><strong>Trên thiết bị di động (Smartphone/Tablet):</strong> Giao diện tuân thủ nguyên tắc công thái học (Ergonomics) với các vùng chạm (Touch targets) mở rộng, tối ưu cho thao tác vuốt, chạm.</li>
+        <li><strong>Trên môi trường máy tính (PC/Laptop):</strong> Bố cục dàn trang rộng rãi, tối ưu cho thao tác chuột và bàn phím, giúp học sinh quan sát toàn diện văn bản và hình ảnh.</li>
+        </ul>
+        <p>Đặc tính này giúp học sinh có thể tận dụng bất kỳ thiết bị thông minh nào sẵn có của gia đình để tham gia ôn tập mà không gặp rào cản về mặt hiển thị hay tương tác.</p>
+        <h4>2.3.2. Biện pháp 2: Triển khai mô hình Học tập kết hợp (Blended Learning) thông qua quy trình "Ôn tập tại nhà - Quản trị từ xa"</h4>
+        <p>Sau khi thiết lập thành công nền tảng kỹ thuật, tôi tiến hành đưa hệ thống vào môi trường thực tế thông qua việc tái cấu trúc không gian và thời gian học tập. Biện pháp này giải quyết triệt để rào cản về định mức thời gian trên lớp và khắc phục tình trạng thiếu hụt thiết bị số tại trường học, được triển khai qua 3 bước:</p>
+        <p><strong>Bước 1: Thiết lập môi trường học tập không đồng bộ (Asynchronous Learning) qua mạng xã hội</strong></p>
+        <p>Thay vì tổ chức ôn luyện đồng loạt trên lớp, giáo viên sử dụng nền tảng liên lạc điện tử (nhóm Zalo lớp) để phân phối liên kết (Link) truy cập hệ thống Mini-LMS đến phụ huynh vào mỗi buổi tối. Việc dịch chuyển không gian học tập này mang lại hai giá trị sư phạm cốt lõi: <em>Thứ nhất,</em> tận dụng tối đa hạ tầng thiết bị cá nhân (điện thoại, máy tính) của gia đình để 100% học sinh đều được thực hành. <em>Thứ hai,</em> tạo điều kiện để học sinh thực hiện nhiệm vụ theo nhịp độ nhận thức cá nhân (Personalized Learning). Các em được phép suy nghĩ chậm lại, đọc kỹ câu hỏi và tự giải quyết vấn đề mà không chịu áp lực về thời gian hay tâm lý so sánh với bạn bè đồng trang lứa.</p>
+        <p><strong>Bước 2: Vận hành cơ chế "Điều khiển cấu hình từ xa" (Remote Configuration) định hướng luồng học tập</strong></p>
+        <p>Để tránh tình trạng học sinh truy cập tự do, mất tập trung vào các môn học không nằm trong phân phối chương trình của ngày hôm đó, tôi đã ứng dụng tính năng điều khiển từ xa thông qua cơ sở dữ liệu Firebase. Cụ thể:</p>
+        <ul>
+        <li>Giáo viên không cần gửi nhiều liên kết rời rạc cho từng môn. Học sinh chỉ sử dụng một đường dẫn (URL) duy nhất để truy cập vào Bảng điều khiển trung tâm (<code>Menu.html</code>).</li>
+        <li>Tại hệ thống quản trị Firebase, giáo viên trực tiếp thay đổi tham số trạng thái (Boolean: True/False) của từng môn học. Ngay lập tức, trên giao diện thiết bị của học sinh, chỉ những môn học được giáo viên kích hoạt (Enable) mới hiển thị nút tương tác sáng màu; các môn còn lại tự động bị chuyển sang trạng thái vô hiệu hóa (Disabled/Grayed out).</li>
+        </ul>
+        <p>Cơ chế này giúp giáo viên nắm giữ quyền chủ động tuyệt đối trong việc định hướng luồng học tập của học sinh từ xa, đồng thời tối giản hóa thao tác tiếp nhận thông tin cho phụ huynh.</p>
+        <p><strong>Bước 3: Quản trị dữ liệu thời gian thực và điều chỉnh kế hoạch dạy học (Data-driven Teaching)</strong></p>
+        <p>Toàn bộ kết quả ôn tập (bao gồm: mã định danh, điểm số, thời gian nộp bài) được hệ thống tự động đẩy về máy chủ đám mây. Giáo viên theo dõi tiến trình này thông qua tệp giao diện quản trị <code>Bang_Tong_hop_Ket_Qua.html</code>.</p>
+        <ul>
+        <li><strong>Giám sát trực tiếp (Real-time Monitoring):</strong> Dữ liệu được cập nhật ngay lập tức mà không cần thao tác tải lại trang, giúp giáo viên nắm bắt nhanh chóng tỷ lệ hoàn thành bài tập của lớp.</li>
+        <li><strong>Trích xuất và phân tích:</strong> Hệ thống tích hợp thuật toán xuất dữ liệu trực tiếp ra định dạng Excel. Dựa trên các tham số thống kê này, giáo viên chẩn đoán chính xác những lỗ hổng kiến thức của từng nhóm học sinh (ví dụ: nhóm học sinh thường xuyên làm sai các câu hỏi liên quan đến phân số trong môn Toán).</li>
+        </ul>
+        <p>Từ dữ liệu thu thập được ở không gian trực tuyến buổi tối, giáo viên sẽ có cơ sở khoa học để điều chỉnh kế hoạch bài dạy, tập trung chữa các lỗi sai phổ biến ngay trong 5 phút đầu của tiết học trực tiếp ngày hôm sau, hiện thực hóa triết lý "Dạy học dựa trên minh chứng dữ liệu".</p>
+        <h4>2.3.3. Biện pháp 3: Tích hợp phát triển Năng lực số thông qua chuỗi thao tác tương tác bắt buộc trên nền tảng Mini-LMS</h4>
+        <p>Thực hiện định hướng của Thông tư 02/2025/TT-BGDĐT, việc giáo dục Năng lực số không thể bị cô lập thành một môn học lý thuyết đơn thuần. Do đó, tôi đã thiết kế kiến trúc của hệ thống Mini-LMS sao cho bản thân quy trình học sinh truy cập và làm bài đã là một chuỗi thực hành kỹ năng số mang tính "sinh tồn". Các thành tố năng lực được lồng ghép tự nhiên thông qua 3 khía cạnh tương tác cốt lõi:</p>
+        <p><strong>Khía cạnh 1: Hình thành năng lực "An toàn số" thông qua cơ chế xác thực thông tin (Authentication)</strong></p>
+        <p>Để khắc phục tình trạng học sinh lớp 4 thiếu ý thức bảo mật tài khoản cá nhân, phân hệ đăng nhập (<code>index.html</code>) được thiết lập thuật toán yêu cầu xác thực kép. Thay vì chỉ nhập tên, hệ thống yêu cầu học sinh phải thực hiện đồng thời hai thao tác:</p>
+        <ul>
+        <li>Nhập chính xác <em>Mã định danh cá nhân (Student ID)</em> đã được giáo viên cấp phát.</li>
+        <li>Trả lời đúng <em>Câu hỏi bảo mật động</em>. Nội dung câu hỏi này được giáo viên thay đổi liên tục theo thời gian thực trên cơ sở dữ liệu Firebase (ví dụ: "Mật khẩu hôm nay là kết quả của phép tính 5 x 8?").</li>
+        </ul>
+        <p>Việc rèn luyện thói quen không chia sẻ mã định danh và nhận diện sự thay đổi của các lớp bảo mật giúp học sinh bước đầu hình thành tư duy phòng vệ, ý thức được tầm quan trọng của việc kiểm soát quyền truy cập trên không gian mạng.</p>
+        <p><strong>Khía cạnh 2: Phát triển năng lực "Vận hành thiết bị" qua trải nghiệm giao diện người dùng (UI/UX)</strong></p>
+        <p>Môi trường làm bài trên Mini-LMS yêu cầu học sinh phải thực hiện các chuỗi thao tác cơ học và tư duy logic liên tục trên thiết bị thông minh. Các em được rèn luyện kỹ năng điều hướng trình duyệt web (Browser navigation), thao tác cuộn trang (Scrolling), lựa chọn đáp án thông qua nút bấm (Radio buttons/Checkboxes), và xác nhận gửi dữ liệu lên máy chủ (Submit). Quá trình lặp đi lặp lại hằng ngày này giúp học sinh chuyển hóa các thao tác công nghệ từ mức độ "chủ ý" sang "tự động hóa", tăng cường sự tự tin khi tiếp xúc với các nền tảng học tập E-learning trong tương lai.</p>
+        <p><strong>Khía cạnh 3: Nâng cao năng lực "Giải quyết vấn đề" thông qua hệ thống hỗ trợ giàn giáo (Scaffolding System)</strong></p>
+        <p>Dựa trên lý thuyết Vùng phát triển gần (Zone of Proximal Development - ZPD) của L. Vygotsky, tôi đã lập trình tính năng phản hồi sư phạm (Feedback) trực tiếp vào tệp <code>core.js</code>. Khi học sinh trả lời sai một câu hỏi trắc nghiệm, thay vì chỉ hiển thị kết quả "Sai", hệ thống sẽ tự động kích hoạt một khung hiển thị <strong>"💡 Gợi ý/Giải thích"</strong> màu cam. Nội dung này cung cấp các từ khóa hoặc quy tắc cốt lõi (ví dụ: quy tắc tính diện tích hình chữ nhật) để định hướng tư duy.</p>
+        <p>Học sinh buộc phải đọc hiểu đoạn văn bản hỗ trợ này, đối chiếu với sai lầm của bản thân và tự tìm ra đáp án đúng. Quá trình này giáo dục cho các em một kỹ năng số bậc cao: <em>Sử dụng công nghệ như một công cụ hỗ trợ tư duy để tự học và tự giải quyết vấn đề</em>, thay vì thái độ ỷ lại vào giáo viên.</p>
+        <h3>2.4. Hiệu quả của sáng kiến kinh nghiệm</h3>
+        <p>Sau một thời gian vận hành thực nghiệm hệ thống Mini-LMS và mô hình Học tập kết hợp đối với khách thể là 31 học sinh lớp 4A, thông qua việc trích xuất dữ liệu định lượng từ hệ thống máy chủ Firebase và đối chiếu định tính qua quan sát sư phạm, sáng kiến đã mang lại những hiệu quả đột phá trên 3 phương diện cốt lõi:</p>
+        <h4>2.4.1. Hiệu quả về mặt nâng cao chất lượng học tập đa môn (Định lượng)</h4>
+        <p>Việc dịch chuyển không gian ôn tập về nhà đã giải phóng quỹ thời gian trên lớp, giúp học sinh yếu có cơ hội tự luyện tập theo nhịp độ cá nhân mà không bị áp lực tâm lý. Sự thay đổi này được minh chứng qua bảng thống kê mức độ hoàn thành bài tập và kết quả học tập (lấy minh chứng ở 2 môn Toán và Tiếng Việt):</p>
+        <table>
+        <tr>
+        <th rowspan="2">Tiêu chí đánh giá (Lớp 4A - 31 HS)</th>
+        <th colspan="2">Trước khi áp dụng SKKN</th>
+        <th colspan="2">Sau khi áp dụng SKKN</th>
+        </tr>
+        <tr>
+        <th>Số lượng</th>
+        <th>Tỷ lệ (%)</th>
+        <th>Số lượng</th>
+        <th>Tỷ lệ (%)</th>
+        </tr>
+        <tr>
+        <td>Tỷ lệ HS tự giác hoàn thành bài tập về nhà</td>
+        <td>18</td>
+        <td>58.1%</td>
+        <td>31</td>
+        <td>100%</td>
+        </tr>
+        <tr>
+        <td>Nhóm HS có kết quả đánh giá thường xuyên môn Toán ở mức "Chưa hoàn thành" (Yếu)</td>
+        <td>6</td>
+        <td>19.4%</td>
+        <td>0</td>
+        <td>0%</td>
+        </tr>
+        <tr>
+        <td>Nhóm HS có kết quả đánh giá thường xuyên môn Tiếng Việt ở mức "Chưa hoàn thành" (Yếu)</td>
+        <td>5</td>
+        <td>16.1%</td>
+        <td>0</td>
+        <td>0%</td>
+    </tr>
+</table>
+<p><em>(Nhận xét: Hệ thống cơ chế "Thử - Sai" và phản hồi tích cực bằng âm thanh/hiệu ứng trên Web App đã thay đổi hoàn toàn động cơ học tập của học sinh, biến việc làm bài tập từ một "nghĩa vụ" thành một "trải nghiệm tương tác", từ đó xóa sổ hoàn toàn tỷ lệ học sinh yếu kém).</em></p>
 
-        // --- Logic Chức năng ---
+<h4>2.4.2. Hiệu quả về mặt rèn luyện và chuẩn hóa Năng lực số (Định tính và Định lượng)</h4>
+<p>Hệ thống không chỉ truyền tải kiến thức văn hóa mà còn là môi trường thực chiến để học sinh đạt các yêu cầu cần đạt về năng lực số theo Thông tư 02/2025/TT-BGDĐT. Dữ liệu trích xuất từ nhật ký truy cập (Access Log) trên Firebase cho thấy:</p>
 
-        /**
-         * Xây dựng các nút điều hướng dạng bài.
-         */
-        function renderNavigation() {
-            navigationEl.innerHTML = '';
-            Object.keys(questionsData).forEach(key => {
-                const button = document.createElement('button');
-                button.textContent = key.replace(':', ': '); // Thêm khoảng trắng cho đẹp
-                // Class cho nút, đổi màu nếu đang ở dạng bài đó
-                button.className = `p-2 text-sm font-semibold rounded-lg transition-all duration-200 shadow-md ${key === currentSection ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`;
-                button.onclick = () => {
-                    currentSection = key;
-                    showResults = false; // Reset trạng thái xem kết quả khi chuyển dạng bài
-                    renderQuiz();
-                };
-                navigationEl.appendChild(button);
-            });
-        }
+<table>
+    <tr>
+        <th>Thành tố Năng lực số</th>
+        <th>Biểu hiện đạt được qua tương tác với Mini-LMS</th>
+        <th>Tỷ lệ đạt</th>
+    </tr>
+    <tr>
+        <td><strong>An toàn số</strong></td>
+        <td>100% học sinh ghi nhớ mã định danh cá nhân; thao tác thành thạo việc nhập câu hỏi bảo mật ngẫu nhiên (xác thực kép) trước khi vào phòng ôn tập. Không có trường hợp truy cập nhầm tài khoản của bạn.</td>
+        <td>100%</td>
+    </tr>
+    <tr>
+        <td><strong>Vận hành thiết bị</strong></td>
+        <td>Học sinh tự tin thao tác điều hướng (chạm, vuốt, chọn đáp án) trên cả hai nền tảng: thiết bị di động (Smartphones) và máy tính (PC).</td>
+        <td>100%</td>
+    </tr>
+    <tr>
+        <td><strong>Giải quyết vấn đề</strong></td>
+        <td>Khi thao tác trả lời sai, 100% học sinh biết cách chủ động kích hoạt và đọc hiểu khung "💡 Gợi ý/Giải thích" từ hệ thống để tự sửa lỗi, giảm thiểu sự phụ thuộc trực tiếp vào giáo viên.</td>
+        <td>100%</td>
+    </tr>
+</table>
 
-        /**
-         * Xử lý khi người dùng chọn đáp án trắc nghiệm.
-         */
-        function handleSelectOption(qIndex, selectedOption) {
-            const sectionKey = currentSection;
-            if (!userAnswers[sectionKey]) userAnswers[sectionKey] = {};
+<h4>2.4.3. Hiệu quả đối với Giáo viên và Nhà trường (Tính kinh tế và Tính tự chủ)</h4>
+<p>Đối với cá nhân tôi và tổ chuyên môn, đề tài đã thay đổi hoàn toàn tư duy ứng dụng công nghệ trong giáo dục:</p>
+<ul>
+    <li><strong>Tối ưu hóa thời gian lao động sư phạm:</strong> Khâu chấm bài, thống kê lỗi sai và lập bảng điểm được tự động hóa 100% thông qua thuật toán của tệp <code>core.js</code> và Firebase, giúp giáo viên tiết kiệm trung bình 5-7 giờ làm việc mỗi tuần.</li>
+    <li><strong>Làm chủ công nghệ với chi phí 0 đồng:</strong> Lần đầu tiên, giáo viên sở hữu một hệ thống LMS chuyên nghiệp với cơ chế quản trị từ xa (Remote Control) mà không phải trả phí duy trì máy chủ hay phí bản quyền cho các nền tảng thương mại, đảm bảo tính bảo mật dữ liệu nội bộ tuyệt đối của nhà trường.</li>
+    <li><strong>Nâng tầm năng lực nghề nghiệp:</strong> Việc sử dụng thành thạo mô hình AI (Gemini) trong kỹ thuật thiết kế câu lệnh (Prompt Engineering) khẳng định sự thích ứng xuất sắc của giáo viên trước làn sóng Trí tuệ nhân tạo, mở ra hướng đi mới trong việc tự thiết kế học liệu số.</li>
+</ul>
+    </div>
+    <div class="paper-section">
+        <h2 style="text-align: center;">PHẦN III: KẾT LUẬN VÀ KIẾN NGHỊ</h2>
 
-            // Lưu đáp án
-            userAnswers[sectionKey][qIndex] = selectedOption;
+        <h4>3.1. Kết luận</h4>
+        <p>Quá trình nghiên cứu và thực nghiệm đề tài <strong><em>"Xây dựng và vận hành hệ thống kiểm tra, đánh giá trực tuyến (Mini-LMS) nhằm nâng cao hiệu quả ôn tập đa môn và phát triển năng lực số cho học sinh lớp 4"</em></strong> đã minh chứng tính đúng đắn và khả thi của việc tích hợp Trí tuệ nhân tạo vào thực tiễn sư phạm. Sáng kiến đã giải quyết trọn vẹn 3 mục tiêu cốt lõi sau:</p>
+        <ul>
+        <li><strong>Về phương diện công nghệ:</strong> Đề tài khẳng định sự thay đổi vị thế của giáo viên từ "người tiêu dùng thụ động" sang "kiến trúc sư" tự chủ hệ thống (Self-hosted). Thông qua Kỹ thuật thiết kế câu lệnh (Prompt Engineering) cùng Trợ lý AI Gemini, giáo viên có khả năng tự lập trình, bảo mật và quản trị dữ liệu học tập qua cơ sở dữ liệu thời gian thực (Firebase) một cách độc lập, chuyên nghiệp và tiết kiệm chi phí.</li>
+        <li><strong>Về phương diện tổ chức dạy học:</strong> Mô hình Học tập kết hợp (Blended Learning) tích hợp cơ chế điều khiển cấu hình từ xa (Remote Configuration) đã tối ưu hóa thời lượng trên lớp và cá nhân hóa nhịp độ nhận thức cho học sinh. Điều này không chỉ giúp nâng cao chất lượng học tập đa môn mà còn xóa bỏ áp lực tâm lý cho nhóm học sinh tiếp thu chậm.</li>
+        <li><strong>Về phương diện phát triển năng lực số:</strong> Đề tài hiện thực hóa thành công định hướng của Thông tư 02/2025/TT-BGDĐT thông qua việc biến các thao tác trên hệ thống (xác thực bảo mật, giải quyết vấn đề qua gợi ý) thành các bài thực hành kỹ năng số thực chiến, lặp đi lặp lại hằng ngày.</li>
+        </ul>
+        <h4>3.2. Kiến nghị</h4>
+        <p>Từ những kết quả khả quan của đề tài, tôi xin đề xuất một số nội dung nhằm lan tỏa và nâng cao hiệu quả của mô hình:</p>
+        <ul>
+        <li><strong>Đối với các cấp quản lý giáo dục:</strong> Cần tổ chức các đợt tập huấn về Kỹ thuật thiết kế câu lệnh (Prompt Engineering) và ứng dụng AI tạo sinh trong thiết kế học liệu số, thay vì chỉ dừng lại ở việc bồi dưỡng sử dụng các phần mềm đóng gói sẵn.</li>
+    <li><strong>Đối với Ban giám hiệu nhà trường:</strong> Khuyến khích xây dựng kho mã nguồn mở (Open-source) cấp đơn vị để chia sẻ các tệp cấu hình Mini-LMS, giúp các tổ chuyên môn dễ dàng tái sử dụng và tùy biến cho nhiều khối lớp khác nhau.</li>
+    
+    <li><strong>Đối với đồng nghiệp:</strong> Cần chủ động thích ứng với tư duy "AI Co-pilot", coi AI là người đồng hành kỹ thuật để giải phóng sức lao động sư phạm và tập trung vào các hoạt động sáng tạo, tương tác với học sinh.</li>
+</ul>
 
-            // Cập nhật giao diện (Đánh dấu đã chọn)
-            const questionElement = document.getElementById(`q-${qIndex}`);
-            // Sử dụng setTimeout để đảm bảo DOM đã cập nhật trước khi thay đổi class
-            setTimeout(() => {
-                questionElement.querySelectorAll('.mc-option').forEach(el => {
-                    el.classList.remove('selected');
-                    if (el.dataset.value === selectedOption) {
-                        el.classList.add('selected');
-                    }
-                });
-            }, 0);
-        }
+<p style="margin-top: 50px; text-align: right;">
+    <em>Triệu Lộc, ngày 22 tháng 2 năm 2026</em><br>
+    <strong>Người viết sáng kiến</strong><br><br><br><br><br>
+    <strong>Phan Văn Tuyến</strong>
+</p>
+</div>
+<div class="paper-section">
+        <h2 style="text-align: center;">PHỤ LỤC: TÀI LIỆU THAM KHẢO VÀ MINH CHỨNG THỰC TẾ</h2>
+        <h4>1. Danh mục các văn bản chỉ đạo làm cơ sở pháp lý cho đề tài</h4>
+<table>
+    <tr>
+        <th style="width: 10%;">STT</th>
+        <th style="width: 30%;">Số hiệu văn bản</th>
+        <th style="width: 60%;">Tên văn bản / Trích yếu nội dung</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Thông tư số 02/2025/TT-BGDĐT</td>
+        <td>Quy định Chuẩn kỹ năng số cho học sinh phổ thông.</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Công văn số 3456/BGDĐT-GDPT</td>
+        <td>Hướng dẫn thực hiện nhiệm vụ giáo dục tiểu học năm học 2024 - 2025 và định hướng 2025 - 2026.</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Quyết định số 131/QĐ-TTg</td>
+        <td>Phê duyệt Đề án "Tăng cường ứng dụng công nghệ thông tin và chuyển đổi số trong giáo dục và đào tạo giai đoạn 2022 - 2025, định hướng đến năm 2030".</td>
+    </tr>
+</table>
 
-        /**
-         * Xử lý khi người dùng nhập đáp án dạng điền số.
-         */
-        function handleTextInput(qIndex, inputIndex, value) {
-            const sectionKey = currentSection;
-            if (!userAnswers[sectionKey]) userAnswers[sectionKey] = {};
+<h4>2. Giải nghĩa các thuật ngữ chuyên môn sử dụng trong đề tài</h4>
+<table>
+    <tr>
+        <th style="width: 30%;">Thuật ngữ</th>
+        <th style="width: 70%;">Giải nghĩa khoa học</th>
+    </tr>
+    <tr>
+        <td><strong>AI Coding Assistant</strong></td>
+        <td>Trợ lý lập trình trí tuệ nhân tạo (Gemini AI), hỗ trợ giáo viên chuyển hóa ý tưởng sư phạm thành mã nguồn kỹ thuật.</td>
+    </tr>
+    <tr>
+        <td><strong>Mini-LMS</strong></td>
+        <td>Hệ thống quản lý học tập quy mô nhỏ (Learning Management System), được tinh gọn để phục vụ nhu cầu ôn tập riêng biệt của một lớp học.</td>
+    </tr>
+    <tr>
+        <td><strong>Firebase Real-time</strong></td>
+        <td>Cơ sở dữ liệu đám mây của Google, cho phép lưu trữ và cập nhật điểm số của học sinh ngay lập tức (thời gian thực).</td>
+    </tr>
+    <tr>
+        <td><strong>Blended Learning</strong></td>
+        <td>Mô hình Học tập kết hợp giữa giảng dạy trực tiếp tại lớp và tự học có hướng dẫn thông qua môi trường trực tuyến.</td>
+    </tr>
+    <tr>
+        <td><strong>Remote Configuration</strong></td>
+        <td>Cơ chế điều khiển cấu hình từ xa, cho phép giáo viên thay đổi trạng thái hệ thống (bật/tắt môn học) thông qua cơ sở dữ liệu.</td>
+    </tr>
+    <tr>
+        <td><strong>Responsive Design</strong></td>
+        <td>Thiết kế đáp ứng, giúp giao diện hệ thống tự động tương thích với nhiều loại màn hình (Điện thoại, Máy tính).</td>
+    </tr>
+</table>
 
-            // Đảm bảo đáp án là một mảng, ngay cả khi chỉ có 1 ô input
-            if (!userAnswers[sectionKey][qIndex]) {
-                const expectedAnswerCount = questionsData[sectionKey][qIndex].answer.length;
-                // Khởi tạo mảng với các giá trị rỗng ('')
-                userAnswers[sectionKey][qIndex] = new Array(expectedAnswerCount).fill('');
-            }
+<h4>3. Địa chỉ truy xuất minh chứng kỹ thuật và vận hành thực tế</h4>
+<p>Để đảm bảo tính minh bạch về mã nguồn và cung cấp cái nhìn trực quan về quy trình vận hành, tác giả cung cấp các địa chỉ truy cập sau:</p>
 
-            // Cập nhật giá trị vào mảng đáp án
-            userAnswers[sectionKey][qIndex][inputIndex] = value.trim();
-        }
+<div class="link-box">
+    <p><strong>3.1. Kho lưu trữ mã nguồn (Github Repository):</strong></p>
+    <p>Địa chỉ: <code>https://github.com/phanvantuyen283/mi_ni_lms</code></p>
+    <p><em>(Nơi lưu trữ toàn bộ file HTML, CSS, JS và cấu hình Firebase của hệ thống để Hội đồng Khoa học truy nhập trực tiếp và tải các file code đã được xây dựng của hệ thống cũng như truy xuất bằng chứng hoạt động của dự án dựa trên các số liệu công khai tài khoản Github của tác giả ).</em></p>
+</div>
+<div class="link-box">
+    <p><strong>3.2. Địa chỉ trải nghiệm người dùng:</strong></p>
+    <p>Địa chỉ truy cập ứng dụng:<code> https://phanvantuyen283.github.io/mi_ni_lms/</code></p>
+    <p>Tài khoản thử nghiệm hệ thống <em>(lựa chọn từ menulist):<code></em><strong>---GIÁO VIÊN TEST---</strong></code></p>
+    <P>Mật khẩu cho tài khoản thử nghiệm:<strong><code>123456</code></strong></P>
+    <p><em><strong>Hội đồng Khoa học</strong> có thể truy nhập vào hệ thống mi_ni_lms của dự án theo đường dẫn và sử dụng tài khoản, mật khẩu thử nghiệm để đánh trải nghiệm người dùng (với vai trò người học) trực tuyến.<br>
+    Nếu <strong> Hội đồng Khoa học </strong> yêu cầu trải nghiệm quản trị hệ thống (trải nghiệm và kiểm tra công cụ quản trị) xin vui lòng liên hệ với tác giả.<br> Xin cảm ơn!</em></p>
+</div>
+<div class="link-box">
+    <p><strong>3.3. Không gian minh chứng thực tế (Padlet):</strong></p>
+    <p>Địa chỉ: <code>https://padlet.com/[Đường_Dẫn_Của_Bạn]</code></p>
+    <p><em>(Nơi chứa các video học sinh thao tác, ảnh chụp màn hình cơ sở dữ liệu Firebase và phản hồi của phụ huynh).</em></p>
+</div>
+</div>
+<footer style="text-align: center; padding: 20px; color: #777;">
+    <p>&copy; 2026 - Tác giả: Phan Văn Tuyến - Trường Tiểu học Châu Lộc- xã Triệu Lộc - tỉnh Thanh Hóa</p>
+</footer>
 
-        /**
-         * So sánh đáp án của người dùng với đáp án đúng.
-         */
-        function checkAnswer(question, userAnswer) {
-            if (question.type === 'mc') {
-                return userAnswer === question.answer;
-            } else if (question.type === 'text' || question.type === 'split') {
-                // Nếu chưa có đáp án, coi như sai
-                if (!userAnswer || userAnswer.length !== question.answer.length) return false;
-
-                // Chuyển string input về number để so sánh
-                const userNumericAnswers = userAnswer.map(a => parseInt(a, 10));
-
-                for (let i = 0; i < question.answer.length; i++) {
-                    // Kiểm tra cả NaN (nếu học sinh nhập rỗng) hoặc giá trị khác biệt
-                    if (userNumericAnswers[i] !== question.answer[i] || isNaN(userNumericAnswers[i])) {
-                        return false;
-                    }
-                }
-                return true;
-            }
-            return false;
-        }
-
-        /**
-         * Tính toán và hiển thị kết quả.
-         */
-        function calculateAndShowResults() {
-            showResults = true;
-            let totalScore = 0;
-            let totalQuestions = 0;
-
-            const results = {};
-
-            // Tính điểm cho tất cả các dạng bài (để hiển thị tổng quan)
-            Object.keys(questionsData).forEach(sectionKey => {
-                results[sectionKey] = { correct: 0, total: 0 };
-                questionsData[sectionKey].forEach((q, index) => {
-                    // Lấy đáp án của người dùng cho câu hỏi hiện tại, nếu không có thì trả về null hoặc mảng rỗng
-                    const userAnswer = (userAnswers[sectionKey] && userAnswers[sectionKey][index]) || (q.type === 'mc' ? '' : q.answer.map(() => ''));
-                    const isCorrect = checkAnswer(q, userAnswer);
-
-                    results[sectionKey].total++;
-                    totalQuestions++;
-                    if (isCorrect) {
-                        results[sectionKey].correct++;
-                        totalScore++;
-                    }
-                });
-            });
-
-            // Hiển thị giao diện kết quả
-            renderQuiz(results, totalScore, totalQuestions);
-        }
-
-        /**
-         * Hiển thị nội dung bài kiểm tra hoặc kết quả.
-         */
-        function renderQuiz(results = null, totalScore = 0, totalQuestions = 0) {
-            renderNavigation(); // Cập nhật trạng thái nút điều hướng
-
-            const sectionQuestions = questionsData[currentSection];
-            let htmlContent = '';
-
-            if (showResults && results) {
-                // --- Giao diện Kết quả ---
-                htmlContent += `
-                    <div class="bg-blue-50 border-t-4 border-blue-500 rounded-b text-blue-900 px-4 py-3 shadow-md mb-6" role="alert">
-                        <div class="flex items-center">
-                            <svg class="h-6 w-6 text-blue-500 mr-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <div>
-                                <p class="font-bold text-lg">Hoàn thành ${currentSection}</p>
-                                <p class="text-sm">Bạn đã đạt: <span class="text-2xl font-extrabold text-blue-700">${results[currentSection].correct}/${results[currentSection].total}</span> câu đúng.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-4 rounded-xl shadow-md mb-4">
-                        <h3 class="text-xl font-semibold mb-2 text-center text-gray-700">Tổng quan toàn bài</h3>
-                        <p class="text-center text-lg text-gray-600">Tổng điểm: <span class="font-bold text-green-600">${totalScore}/${totalQuestions}</span></p>
-                        <ul class="mt-4 space-y-2">
-                            ${Object.keys(results).map(key => `
-                                <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
-                                    <span class="font-medium text-gray-800">${key}:</span>
-                                    <span class="font-bold ${results[key].correct === results[key].total ? 'text-green-600' : 'text-orange-500'}">${results[key].correct}/${results[key].total}</span>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    </div>
-
-                    <button onclick="showResults = false; renderQuiz()" class="w-full p-3 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 transition-colors mt-4 shadow-lg">
-                        Quay lại làm bài
-                    </button>
-                    <h3 class="text-xl font-bold text-gray-700 mt-6 mb-4">Xem lại đáp án ${currentSection}:</h3>
-                `;
-            } else {
-                htmlContent += `<h2 class="text-xl font-bold text-gray-700 mb-4">${currentSection}</h2>`;
-            }
-
-            // --- Giao diện Câu hỏi ---
-            sectionQuestions.forEach((q, index) => {
-                // Khôi phục đáp án người dùng (hoặc mảng rỗng nếu chưa có)
-                const userAnswer = (userAnswers[currentSection] && userAnswers[currentSection][index]) || (q.type === 'mc' ? '' : q.answer.map(() => ''));
-                let qHtml = '';
-                const isCorrect = showResults ? checkAnswer(q, userAnswer) : false;
-                const resultClass = showResults ? (isCorrect ? 'correct-answer' : 'wrong-answer') : '';
-                // Lấy đơn vị cần hiển thị sau đáp án đúng (chỉ áp dụng cho các dạng điền)
-                const unitAfterCorrect = q.type === 'split' ? q.targetUnits.join(' ') : q.q.split('...').pop().trim();
-
-                if (q.type === 'mc') {
-                    // Dạng Trắc nghiệm đa lựa chọn
-                    
-                    qHtml = q.options.map(option => {
-                        const isSelected = userAnswer === option;
-                        let optionClass = '';
-
-                        if (showResults) {
-                            if (option === q.answer) {
-                                optionClass = 'correct-answer'; // Đáp án đúng
-                            } else if (isSelected && option !== q.answer) {
-                                optionClass = 'wrong-answer'; // Đáp án sai đã chọn
-                            }
-                        } else if (isSelected) {
-                            optionClass = 'selected';
-                        }
-
-                        // Vô hiệu hóa click khi đã hiển thị kết quả
-                        return `
-                            <span
-                                class="mc-option ${optionClass} ${showResults ? 'pointer-events-none' : ''}"
-                                data-value="${option}"
-                                onclick="handleSelectOption(${index}, '${option.replace(/'/g, "\\'")}')"
-                            >
-                                ${option}
-                            </span>
-                        `;
-                    }).join('');
-
-                    // Hiển thị câu hỏi có câu lệnh
-                    qHtml = `<p class="font-bold text-gray-800 mb-2">${q.q}</p>${qHtml}`;
-                } else if (q.type === 'text') {
-                    // Dạng Toán Gộp/Đổi xuôi/Đổi ngược (1 ô trống)
-                    // Đảm bảo lấy giá trị từ mảng nếu tồn tại
-                    const val = showResults ? q.answer[0] : (Array.isArray(userAnswer) && userAnswer.length > 0 ? userAnswer[0] : '');
-                    const borderClass = showResults ? (isCorrect ? 'border-green-600' : 'border-red-600') : 'border-gray-300';
-                    const questionParts = q.q.split('...');
-                    const unitBefore = questionParts[0] || '';
-                    const unitAfter = questionParts.length > 1 ? questionParts[1].trim() : '';
-
-                    const inputFields = `
-                        <input
-                            type="number"
-                            class="w-20 text-center border-2 ${borderClass} rounded-md p-1 font-bold text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 ${showResults ? 'bg-gray-100 cursor-default' : ''}"
-                            value="${val}"
-                            oninput="handleTextInput(${index}, 0, this.value)"
-                            ${showResults ? 'readonly' : ''}
-                            placeholder="..."
-                        />
-                        <span class="ml-1 text-gray-600">${unitAfter}</span>
-                    `;
-                    qHtml = `<div class="flex flex-wrap items-center">${unitBefore} ${inputFields}</div>`;
-
-                } else if (q.type === 'split') {
-                    // Dạng Toán Tách (nhiều ô trống)
-                    let fullQuestionHtml = q.q; // Ví dụ: "2735 kg = "
-
-                    for(let i = 0; i < q.answer.length; i++) {
-                        // Đảm bảo lấy giá trị từ mảng nếu tồn tại
-                        const val = showResults ? q.answer[i] : (Array.isArray(userAnswer) && userAnswer.length > i ? userAnswer[i] : '');
-                        const unit = q.targetUnits[i] || ''; // Sử dụng targetUnits để lấy đơn vị
-                        const borderClass = showResults ? (isCorrect ? 'border-green-600' : 'border-red-600') : 'border-gray-300';
-                        
-                        const inputBlock = `
-                            <span class="inline-flex items-center mx-1">
-                                <input
-                                    type="number"
-                                    class="w-20 text-center border-2 ${borderClass} rounded-md p-1 font-bold text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 ${showResults ? 'bg-gray-100 cursor-default' : ''}"
-                                    value="${val}"
-                                    oninput="handleTextInput(${index}, ${i}, this.value)"
-                                    ${showResults ? 'readonly' : ''}
-                                    placeholder="..."
-                                />
-                                <span class="ml-1 mr-3 text-gray-600">${unit}</span>
-                            </span>
-                        `;
-                        fullQuestionHtml += inputBlock;
-                    }
-                    
-                    qHtml = `<div class="flex flex-wrap items-center">${fullQuestionHtml}</div>`;
-                }
-
-                // Hiển thị đáp án đúng nếu sai
-                if (showResults && !isCorrect) {
-                    // Đối với MC, hiển thị đáp án đúng
-                    const correctAnswerDisplay = q.type === 'mc' ? q.answer : (q.answer.join(' ') + ' ' + unitAfterCorrect).trim();
-                    qHtml += `<p class="mt-2 text-sm text-red-700 font-medium">Đáp án đúng: ${correctAnswerDisplay}</p>`;
-                } else if (showResults && isCorrect) {
-                    qHtml += `<p class="mt-2 text-sm text-green-700 font-medium">Bạn trả lời đúng!</p>`;
-                }
-
-                htmlContent += `
-                    <div id="q-${index}" class="question-box ${resultClass}">
-                        <p class="font-semibold text-gray-700 mb-3">Câu ${index + 1}:</p>
-                        ${qHtml}
-                    </div>
-                `;
-            });
-
-            if (!showResults) {
-                // Nút hoàn thành bài làm
-                htmlContent += `
-                    <button onclick="calculateAndShowResults()" class="w-full p-4 bg-green-500 text-white text-lg font-bold rounded-lg hover:bg-green-600 transition-colors my-6 shadow-xl">
-                        Hoàn thành bài làm Dạng ${currentSection.split(':')[0].split(' ')[1]}
-                    </button>
-                `;
-            }
-
-            quizContentEl.innerHTML = htmlContent;
-        }
-
-        // --- Khởi tạo ---
-        document.addEventListener('DOMContentLoaded', () => {
-            renderQuiz();
-        });
-    </script>
 </body>
 </html>
-
