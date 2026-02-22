@@ -39,8 +39,8 @@
             .container { max-width: 100%; }
         }
         /* CSS chuyên biệt cho trang bìa và ngắt trang */
-@media screen, print {
-    .cover-page {
+        @media screen, print {
+         .cover-page {
         width: 210mm;
         height: 297mm;
         padding: 10mm 15mm 10mm 30mm; /* Lề chuẩn đóng gáy */
@@ -48,7 +48,7 @@
         margin: 0 auto 30px auto;
         background: white;
         position: relative;
-    }
+        }
     .cover-border {
         border: 4px double #000;
         height: 100%;
@@ -68,12 +68,50 @@
     
     /* Lệnh ngắt trang quan trọng */
     .page-break { page-break-after: always; clear: both; }
-}
+    }
 
-@media print {
+        @media print {
     body { background: none; }
     .cover-page { margin: 0; box-shadow: none; }
 }
+    /* Style cho trang Mục lục */
+.toc-page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 20mm 15mm 20mm 30mm;
+    margin: 0 auto 30px auto;
+    background: white;
+    box-sizing: border-box;
+}
+.toc-title {
+    text-align: center;
+    font-size: 16pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+.toc-list { list-style: none; padding: 0; }
+.toc-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 12px;
+    font-size: 14pt;
+}
+.toc-text { flex: 1; position: relative; overflow: hidden; }
+.toc-text::after {
+    content: " ..........................................................................................................................................................................................";
+    position: absolute;
+    padding-left: 5px;
+    color: #999;
+    }
+        .toc-page-num { padding-left: 10px; font-weight: bold; background: white; z-index: 1; }
+        .toc-sub-item { padding-left: 1.5cm; font-style: italic; font-size: 13pt; margin-top: 5px; }
+
+    @media print {
+    .toc-page { box-shadow: none; margin: 0; }
+}
+
 
     </style>
 </head>
@@ -85,7 +123,7 @@
     <div class="nav-buttons">
         <a href="link-file-pdf-cua-ban.pdf" class="btn btn-pdf" target="_blank"><i class="fas fa-file-pdf"></i> Tải bản PDF</a>
         <button onclick="window.print()" class="btn btn-print"><i class="fas fa-print"></i> In Sáng kiến</button>
-        <a href="https://phanvantuyen283.github.io/mi_ni_lms/ class="btn btn-source"><i class="fab fa-github"></i> Source Code</a>
+        <a href="https://phanvantuyen283.github.io/mi_ni_lms/"   class="btn btn-source"><i class="fab fa-github"></i> Source Code</a>
     </div>
 </header>
 <div class="cover-page">
@@ -118,6 +156,68 @@
 
 
 <div class="container">
+        <div class="toc-page">
+    <div class="toc-title">MỤC LỤC</div>
+    <ul class="toc-list">
+        <li class="toc-item">
+            <span class="toc-text"><strong>PHẦN I: MỞ ĐẦU</strong></span>
+            <span class="toc-page-num">1</span>
+        </li>
+        <li class="toc-item toc-sub-item">
+            <span class="toc-text">1.1. Lý do chọn đề tài</span>
+            <span class="toc-page-num">1</span>
+        </li>
+        <li class="toc-item toc-sub-item">
+            <span class="toc-text">1.2. Mục đích nghiên cứu</span>
+            <span class="toc-page-num">2</span>
+        </li>
+        
+        <li class="toc-item" style="margin-top: 20px;">
+            <span class="toc-text"><strong>PHẦN II: NỘI DUNG</strong></span>
+            <span class="toc-page-num">4</span>
+        </li>
+        <li class="toc-item toc-sub-item">
+            <span class="toc-text">2.1. Cơ sở lý luận</span>
+            <span class="toc-page-num">4</span>
+        </li>
+        <li class="toc-item toc-sub-item">
+            <span class="toc-text">2.2. Thực trạng vấn đề</span>
+            <span class="toc-page-num">5</span>
+        </li>
+        <li class="toc-item toc-sub-item">
+            <span class="toc-text">2.3. Các biện pháp tổ chức thực hiện</span>
+            <span class="toc-page-num">7</span>
+        </li>
+        <li class="toc-item toc-sub-item" style="padding-left: 2.5cm;">
+            <span class="toc-text">Biện pháp 1: Ứng dụng AI Gemini thiết kế Mini-LMS</span>
+            <span class="toc-page-num">7</span>
+        </li>
+        <li class="toc-item toc-sub-item" style="padding-left: 2.5cm;">
+            <span class="toc-text">Biện pháp 2: Quy trình quản trị từ xa qua Firebase</span>
+            <span class="toc-page-num">10</span>
+        </li>
+        <li class="toc-item toc-sub-item" style="padding-left: 2.5cm;">
+            <span class="toc-text">Biện pháp 3: Tích hợp phát triển Năng lực số</span>
+            <span class="toc-page-num">13</span>
+        </li>
+        <li class="toc-item toc-sub-item">
+            <span class="toc-text">2.4. Hiệu quả của sáng kiến</span>
+            <span class="toc-page-num">16</span>
+        </li>
+
+        <li class="toc-item" style="margin-top: 20px;">
+            <span class="toc-text"><strong>PHẦN III: KẾT LUẬN VÀ KIẾN NGHỊ</strong></span>
+            <span class="toc-page-num">19</span>
+        </li>
+        
+        <li class="toc-item" style="margin-top: 10px;">
+            <span class="toc-text"><strong>PHỤ LỤC</strong></span>
+            <span class="toc-page-num">21</span>
+        </li>
+    </ul>
+</div>
+<div style="page-break-after: always;"></div>
+
     
     <div class="paper-section">
         <h2 style="text-align: center;">PHẦN I: MỞ ĐẦU</h2>
@@ -254,7 +354,7 @@
         <p><strong>Khía cạnh 2: Phát triển năng lực "Vận hành thiết bị" qua trải nghiệm giao diện người dùng (UI/UX)</strong></p>
         <p>Môi trường làm bài trên Mini-LMS yêu cầu học sinh phải thực hiện các chuỗi thao tác cơ học và tư duy logic liên tục trên thiết bị thông minh. Các em được rèn luyện kỹ năng điều hướng trình duyệt web (Browser navigation), thao tác cuộn trang (Scrolling), lựa chọn đáp án thông qua nút bấm (Radio buttons/Checkboxes), và xác nhận gửi dữ liệu lên máy chủ (Submit). Quá trình lặp đi lặp lại hằng ngày này giúp học sinh chuyển hóa các thao tác công nghệ từ mức độ "chủ ý" sang "tự động hóa", tăng cường sự tự tin khi tiếp xúc với các nền tảng học tập E-learning trong tương lai.</p>
         <p><strong>Khía cạnh 3: Nâng cao năng lực "Giải quyết vấn đề" thông qua hệ thống hỗ trợ giàn giáo (Scaffolding System)</strong></p>
-        <p>Dựa trên lý thuyết Vùng phát triển gần (Zone of Proximal Development - ZPD) của L. Vygotsky, tôi đã lập trình tính năng phản hồi sư phạm (Feedback) trực tiếp vào tệp <code>core.js</code>. Khi học sinh trả lời sai một câu hỏi trắc nghiệm, thay vì chỉ hiển thị kết quả "Sai", hệ thống sẽ tự động kích hoạt một khung hiển thị <strong>"💡 Gợi ý/Giải thích"</strong> màu cam. Nội dung này cung cấp các từ khóa hoặc quy tắc cốt lõi (ví dụ: quy tắc tính diện tích hình chữ nhật) để định hướng tư duy.</p>
+        <p>Dựa trên lý thuyết Vùng phát triển gần (Zone of Proximal Development - ZPD) của L. Vygotsky, tôi đã lập trình tính năng phản hồi sư phạm (Feedback) trực tiếp vào tệp <code>core.js</code>. Khi học sinh trả lời sai một câu hỏi trắc nghiệm, thay vì chỉ hiển thị kết quả "Sai", hệ thống sẽ tự động kích hoạt một khung hiển thị <strong>" Gợi ý/Giải thích"</strong> màu cam. Nội dung này cung cấp các từ khóa hoặc quy tắc cốt lõi (ví dụ: quy tắc tính diện tích hình chữ nhật) để định hướng tư duy.</p>
         <p>Học sinh buộc phải đọc hiểu đoạn văn bản hỗ trợ này, đối chiếu với sai lầm của bản thân và tự tìm ra đáp án đúng. Quá trình này giáo dục cho các em một kỹ năng số bậc cao: <em>Sử dụng công nghệ như một công cụ hỗ trợ tư duy để tự học và tự giải quyết vấn đề</em>, thay vì thái độ ỷ lại vào giáo viên.</p>
         <h3>2.4. Hiệu quả của sáng kiến kinh nghiệm</h3>
         <p>Sau một thời gian vận hành thực nghiệm hệ thống Mini-LMS và mô hình Học tập kết hợp đối với khách thể là 31 học sinh lớp 4A, thông qua việc trích xuất dữ liệu định lượng từ hệ thống máy chủ Firebase và đối chiếu định tính qua quan sát sư phạm, sáng kiến đã mang lại những hiệu quả đột phá trên 3 phương diện cốt lõi:</p>
@@ -431,7 +531,7 @@
 </div>
 <div class="link-box">
     <p><strong>3.3. Không gian minh chứng thực tế (Padlet):</strong></p>
-    <p>Địa chỉ: <code>https://padlet.com/[Đường_Dẫn_Của_Bạn]</code></p>
+    <p>Địa chỉ: <code>https://padlet.com/pvtuyen/padlet-s-i-n-i-c-a-t-i-r2nfljpnqtymobb0</code></p>
     <p><em>(Nơi chứa các video học sinh thao tác, ảnh chụp màn hình cơ sở dữ liệu Firebase và phản hồi của phụ huynh).</em></p>
 </div>
 </div>
