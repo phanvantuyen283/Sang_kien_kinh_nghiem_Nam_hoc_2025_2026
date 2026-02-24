@@ -17,7 +17,9 @@
         
         /* Typography */
         h1, h2, h3 { color: var(--primary); }
-        .paper-section { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 30px; text-align: justify; }
+        .paper-section { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 30px; text-align: justify; 
+        
+        }
         .indent { text-indent: 1cm; }
         
         /* Components */
@@ -111,6 +113,31 @@
     @media print {
     .toc-page { box-shadow: none; margin: 0; }
 }
+/* Khung chứa ảnh để căn giữa và tạo khoảng cách */
+.image-wrapper {
+    text-align: center;
+    margin: 25px 0;
+    page-break-inside: avoid; /* Ngăn ảnh bị cắt đôi khi in sang trang mới */
+}
+
+/* Định dạng ảnh minh họa */
+.image-wrapper img {
+    max-width: 85%; /* Ảnh chiếm tối đa 85% chiều rộng trang giấy */
+    height: auto;
+    border: 1px solid #333; /* Viền mỏng để nhìn chuyên nghiệp */
+    padding: 3px;
+    background-color: #fff;
+}
+
+/* Định dạng chú thích dưới ảnh */
+.image-label {
+    display: block;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 13pt;
+    font-style: italic;
+    margin-top: 10px;
+    color: #000;
+}
 
 
     </style>
@@ -125,8 +152,7 @@
         <button onclick="window.print()" class="btn btn-print"><i class="fas fa-print"></i> In Sáng kiến</button>
         <a href="https://github.com/phanvantuyen283/mi_ni_lms" target="_blank" class="btn btn-source">
     <i class="fab fa-github"></i> Source Code
-       </a>
-
+        </a>
     </div>
 </header>
 <div class="cover-page">
@@ -146,7 +172,7 @@
 
         <div class="cover-info">
             <strong>Lĩnh vực:</strong> Ứng dụng Công nghệ thông tin<br>
-            <strong>Tác giả:</strong>  Phan Văn Tuyến<br>
+            <strong>Người thực hiện:</strong>  Phan Văn Tuyến<br>
             <strong>Đơn vị:</strong> Trường Tiểu học Châu Lộc
         </div>
 
@@ -225,17 +251,20 @@
     <div class="paper-section">
         <h2 style="text-align: center;">PHẦN I: MỞ ĐẦU</h2>
         <h3>1.1. Lý do chọn đề tài</h3>
-        <p class="indent"><p>Chuyển đổi số trong giáo dục đang chuyển dịch mạnh mẽ từ việc số hóa tài liệu đơn thuần sang việc kiến tạo các môi trường học tập tương tác và phát triển năng lực toàn diện cho học sinh. Đặc biệt, với sự ra đời của Thông tư số 02/2025/TT-BGDĐT ban hành Quy định chuẩn kỹ năng số cho học sinh phổ thông, yêu cầu lồng ghép việc giáo dục năng lực số (An toàn số, Vận hành thiết bị, Giải quyết vấn đề) vào các môn học văn hóa đã trở thành một nhiệm vụ trọng tâm và cấp thiết.</p>
-        <p>Tuy nhiên, trong thực tiễn giảng dạy tại trường tiểu học, giáo viên đang phải đối mặt với nhiều rào cản mang tính hệ thống. <em>Thứ nhất,</em> về mặt sư phạm, quỹ thời gian 35-40 phút cho mỗi tiết học trên lớp là quá ít ỏi để giáo viên vừa truyền tải kiến thức mới, vừa tổ chức ôn tập chuyên sâu và kèm cặp cá nhân hóa cho từng học sinh. <em>Thứ hai,</em> về cơ sở vật chất, sự hạn chế thiết bị thông minh tại trường khiến việc tổ chức cho 100% học sinh đồng loạt thực hành các kỹ năng số là bất khả thi. <em>Thứ ba,</em> về mặt công nghệ, các nền tảng kiểm tra trực tuyến hiện hành của bên thứ ba thường mang tính đóng, thiếu linh hoạt, chứa quảng cáo và không cho phép giáo viên can thiệp sâu vào các thuật toán quản lý (như cơ chế chống gian lận, điều hướng môn học từ xa hay tùy biến phản hồi cảm xúc).</p>
-        <p>Để giải quyết triệt để những mâu thuẫn trên, việc dịch chuyển không gian ôn tập từ lớp học về môi trường trực tuyến tại gia đình thông qua mô hình Học tập kết hợp (Blended Learning) là một hướng đi tất yếu. Vấn đề đặt ra là: Làm thế nào để một giáo viên tiểu học, không có chuyên môn sâu về lập trình, có thể tự thiết kế và làm chủ một hệ thống quản lý học tập quy mô nhỏ (Mini-LMS) đáp ứng đúng triết lý sư phạm của riêng mình?</p>
-        <p>Đứng trước yêu cầu đó, tôi nhận thấy Trí tuệ nhân tạo tạo sinh (Generative AI), đặc biệt là mô hình ngôn ngữ lớn Gemini, mang lại tiềm năng to lớn trong vai trò một trợ lý hỗ trợ lập trình (AI Coding Assistant). Sự kết hợp giữa tư duy sư phạm của giáo viên và khả năng xử lý thuật toán của AI có thể tạo ra những hệ thống giáo dục độc bản, tối ưu hóa quá trình ôn tập đa môn và tạo môi trường thực hành năng lực số tự nhiên cho học sinh ngay tại nhà.</p>
-        <p>Xuất phát từ những cơ sở lý luận và thực tiễn nêu trên, tôi quyết định chọn đề tài: <strong><em>"Xây dựng và vận hành hệ thống kiểm tra, đánh giá trực tuyến (Mini-LMS) nhằm nâng cao hiệu quả ôn tập đa môn và phát triển năng lực số cho học sinh lớp 4"</em></strong> làm sáng kiến kinh nghiệm trong năm học này.</p>
+        <p class="indent"><p>Chuyển đổi số trong giáo dục đang chuyển dịch mạnh mẽ từ việc số hóa tài liệu đơn thuần sang việc kiến tạo các môi trường học tập tương tác và phát triển năng lực toàn diện cho học sinh. Đặc biệt, với sự ra đời của<strong> Thông tư số 02/2025/TT-BGDĐT</strong> ban hành Quy định chuẩn kỹ năng số cho học sinh phổ thông, yêu cầu lồng ghép việc giáo dục năng lực số (An toàn số, Vận hành thiết bị, Giải quyết vấn đề) vào các môn học văn hóa đã trở thành một nhiệm vụ trọng tâm và cấp thiết.</p>
+        <p>Bám sát chủ trương của Bộ, Phòng Văn hóa- Xã hội xã Triệu Lộc đã ban hành <strong> Công văn số 496/GDĐT</strong> và <strong> Công văn số 45/GDĐT</strong> yêu cầu giáo viên phải đổi mới phương pháp dạy học theo hướng ứng dụng thực chất công nghệ. Chuyển đổi số phải là quá trình giúp giảm tải áp lực hồ sơ, nâng cao hiệu quả dạy và học thực tế của giáo viên và học sinh chứ không chỉ là sự trình diễn công nghệ mang tính hình thức của giáo viên.</p>
+        <p> Về phía Nhà trường, Ban Giám hiệu đã giao nhiệm vụ và tạo điều kiện để giáo viên tham gia đầy đủ các đợt tập huấn Công nghệ thông tin, nhất là ứng dụng AI trong dạy học do các cấp quản lí tổ chức năm 2025.</p>
+        <p>Tuy nhiên, trong thực tiễn giảng dạy tại trường tiểu học, giáo viên đang phải đối mặt với nhiều rào cản mang tính hệ thống. <em>Thứ nhất,</em> về mặt sư phạm, khi một lớp học có nhiều nhóm học sinh phân hóa lớn về năng lực học tập thì quỹ thời gian 30-35 phút cho mỗi tiết học trên lớp là hơi ít để giáo viên vừa tổ chức hoạt động để hình thành kiến thức mới, vừa tổ chức ôn tập chuyên sâu và kèm cặp cá nhân hóa cho từng học sinh. <em>Thứ hai,</em> về cơ sở vật chất, sự hạn chế thiết bị thông minh tại các trường khu vực nông thôn khiến việc tổ chức cho 100% học sinh đồng loạt thực hành các kỹ năng số là khó đạt được. <em>Thứ ba,</em> về mặt công nghệ, các nền tảng kiểm tra trực tuyến hiện hành của bên thứ ba như Azota,Kahot, Word Wall, Quizzi,...  là các nền tảng thuông mại ( phải trả phí theo tháng hoặc theo năm để sử dụng), thường  ,, hoạt, chứa quảng cáo <em>(với các phiên bản miễn phí)</em> và không cho phép giáo viên can thiệp sâu vào các thuật toán quản lý (như tính tổng điểm các môn, xếp hạngcơ ian lận, điều hướng môn học từ xa hay tùy biến phản hồi cảm xúc).</p>
+        <p>Để giải quyết triệt để những mâu thuẫn trên, việc mở thêm không gian ôn tập trên môi trường trực tuyến tại gia đình thông qua mô hình Học tập kết hợp (Blended Learning) là một hướng đi khả thi. Vấn đề đặt ra là: Làm thế nào để một giáo viên tiểu học, không có chuyên môn sâu về lập trình, có thể tự thiết kế và làm chủ một hệ thống quản lý học tập quy mô nhỏ (Mini-LMS) đáp ứng đúng triết lý sư phạm của riêng mình?</p>
+        <p>Đứng trước yêu cầu đó, thông qua các kĩ năng có được từ những đợt tập huấn Công nghệ thông tin do UBND xã Triệu Lộc tổ chức, tôi nhận thấy Trí tuệ nhân tạo tạo sinh (Generative AI), đặc biệt là mô hình ngôn ngữ lớn Gemini, mang lại tiềm năng to lớn trong vai trò một trợ lý hỗ trợ lập trình (AI Coding Assistant). Sự kết hợp giữa tư duy sư phạm của giáo viên và khả năng xử lý thuật toán của AI có thể tạo ra những hệ thống giáo dục tùy biến cá nhân độc đáo, tối ưu hóa quá trình ôn tập đa môn và tạo môi trường thực hành năng lực số tự nhiên cho học sinh ngay tại nhà.</p>
+        <p>Xuất phát từ những cơ sở lý luận và thực tiễn nêu trên, tôi quyết định chọn đề tài: <strong><em>"Xây dựng và vận hành hệ thống kiểm tra, đánh giá trực tuyến (Mini-LMS) nhằm nâng cao hiệu quả ôn tập đa môn và phát triển năng lực số cho học sinh lớp 4"</em></strong> làm sáng kiến kinh nghiệm trong năm học 2025-2026.</p>
         <h3>1.2.Mục đích nghiên cứu</h3>
-        <p class="indent">Đề tài được thực hiện nhằm đạt được 3 mục tiêu cốt lõi sau đây</p>
+        <p class="indent">Đề tài được thực hiện nhằm đạt được 3 mục tiêu cốt lõi là:</p>
         <ul>
-        <li><strong>Thứ nhất (Về mặt công nghệ):</strong> Xây dựng thành công quy trình ứng dụng Trí tuệ nhân tạo tạo sinh (mô hình Gemini) làm trợ lý lập trình để thiết kế và vận hành một hệ thống quản lý học tập quy mô nhỏ (Mini-LMS) độc lập. Qua đó, giúp giáo viên làm chủ hoàn toàn các thuật toán đánh giá, cơ chế bảo mật và quản trị dữ liệu học tập của học sinh mà không phụ thuộc vào nền tảng của bên thứ ba.</li>
-        <li><strong>Thứ hai (Về mặt tổ chức sư phạm):</strong> Triển khai hiệu quả mô hình Học tập kết hợp (Blended Learning), dịch chuyển không gian ôn tập kiến thức đa môn từ lớp học về môi trường trực tuyến tại gia đình. Mục đích nhằm giải quyết giới hạn về quỹ thời gian trên lớp, khắc phục tình trạng thiếu hụt thiết bị thực hành tại trường và tạo điều kiện cá nhân hóa nhịp độ học tập cho từng đối tượng học sinh.</li>
+        <li><strong>Thứ nhất (Về mặt công nghệ):</strong> Xây dựng thành công quy trình ứng dụng Trí tuệ nhân tạo tạo sinh (Cụ thể trong đề tài này, tôi đã sử dụng mô hình Gemini Pro) làm trợ lý lập trình để thiết kế và vận hành một hệ thống quản lý học tập quy mô nhỏ (Mini-LMS) độc lập. Qua đó, giúp giáo viên làm chủ hoàn toàn các nội dung ôn tập, thuật toán đánh giá, cơ chế bảo mật và quản trị dữ liệu học tập của học sinh mà không phụ thuộc vào nền tảng của bên thứ ba.</li>
+        <li><strong>Thứ hai (Về mặt tổ chức sư phạm):</strong> Triển khai hiệu quả mô hình Học tập kết hợp (Blended Learning), mở thêm không gian ôn tập đa phương tiện trên môi trường trực tuyến tại gia đình. Mục đích nhằm giải quyết giới hạn về quỹ thời gian trên lớp, giúp phụ huynh cùng kết hợp với giáo viên để đôn đốc việc học tập ở nhà của con em, khắc phục tình trạng thiếu hụt thiết bị thực hành tại trường và tạo điều kiện cá nhân hóa nhịp độ học tập cho từng đối tượng học sinh.</li>
         <li><strong>Thứ ba (Về mặt phát triển năng lực):</strong> Tích hợp và hình thành các thành tố của Năng lực số (bao gồm: An toàn số, Vận hành thiết bị, Giải quyết vấn đề) cho học sinh lớp 4 thông qua các chuỗi thao tác tương tác bắt buộc trên hệ thống Mini-LMS, đáp ứng kịp thời các tiêu chuẩn quy định tại Thông tư 02/2025/TT-BGDĐT.</li>
+        <li><strong>Thứ tư (Về mặt ứng dụng và kinh tế):</strong> Khi chủ động được về mã nguồn và quy trình vận hành của hệ thống, giáo viên có thể nâng cấp tùy biến, chuyển giao và nhân rộng hệ thống một cách dễ dàng mà không cần sự liên quan của bên thứ 3. Do đó sẽ tiết kiệm được chi phí sử dụng và vận hành thực tế (so với việc lựa chọn các ứng dụng phổ biến phiên bản thương mại) </li>
         </ul>
         <h3>1.3. Đối tượng và khách thể nghiên cứu</h3>
         <ul>
@@ -258,20 +287,13 @@
         <br>Sử dụng cơ sở dữ liệu thời gian thực (Google Firebase) để tự động thu thập các tham số định lượng một cách khách quan (bao gồm: thời gian hoàn thành bài, điểm số thực tế, tần suất truy cập). Sau đó, kết hợp phần mềm MS Excel để mã hóa, thống kê, đối chiếu và mô hình hóa dữ liệu nhằm đánh giá hiệu quả trước và sau khi tác động thực nghiệm.
         </li>
         </ul>
-        <h3>1.5. Những điểm mới của sáng kiến kinh nghiệm</h3>
-        <p>So với các biện pháp ứng dụng công nghệ thông tin truyền thống trong công tác kiểm tra, đánh giá, đề tài mang 3 điểm mới mang tính hệ thống như sau:</p>
-        <ul>
-        <li><strong>Tính tự chủ công nghệ thông qua Trợ lý AI (Self-hosted by AI):</strong> Lần đầu tiên, một hệ thống giáo dục quy mô nhỏ được thiết kế và vận hành mà không phụ thuộc vào nền tảng trung gian của bên thứ ba. Nhờ sự hỗ trợ lập trình từ mô hình AI tạo sinh (Gemini), giáo viên tự xây dựng mã nguồn (HTML/JS) và quản trị cơ sở dữ liệu đám mây (Google Firebase). Cấu trúc này đảm bảo quyền kiểm soát tuyệt đối về thuật toán đánh giá (như cơ chế chống thực hiện lại bài) và bảo mật dữ liệu học sinh với chi phí vận hành bằng không.</li>
-        <li><strong>Cơ chế "Điều khiển cấu hình từ xa" (Remote Configuration):</strong> Khác với các tệp bài tập hoặc biểu mẫu tĩnh thông thường, hệ thống Mini-LMS có khả năng tương tác theo thời gian thực. Thông qua cơ sở dữ liệu Firebase, giáo viên có quyền tùy biến trạng thái (Enable/Disable) quyền truy cập từng môn học, thay đổi hệ thống câu hỏi bảo mật động nhằm định hướng luồng học tập của học sinh mà không cần can thiệp trực tiếp vào mã nguồn cốt lõi.</li>
-    
-        <li><strong>Môi trường phát triển Năng lực số phi truyền thống:</strong> Đề tài không tách rời việc rèn luyện kỹ năng số thành một môn học hoặc chuyên đề độc lập. Thay vào đó, quy trình hình thành Năng lực số được thiết kế như một chuỗi thao tác bắt buộc; học sinh phải vận dụng kỹ năng An toàn số (xác thực kép) và kỹ năng Giải quyết vấn đề (khai thác thông tin phản hồi từ hệ thống) để có thể hoàn thành các nhiệm vụ ôn tập văn hóa hằng ngày.</li>
-        </ul>
+        
     </div>
     <div class="paper-section">
         <h2 style="text-align: center;">PHẦN II: NỘI DUNG</h2>
         <h3>2.1. Cơ sở lý luận</h3>
         <h4>2.1.1. Cơ sở pháp lý về định hướng chuyển đổi số và phát triển năng lực số trong giáo dục phổ thông</h4>
-        <p>Đề tài được xây dựng dựa trên hành lang pháp lý của ngành Giáo dục trong lộ trình chuyển đổi số, tiêu biểu là định hướng tại Công văn số 3456/BGDĐT-GDPT về việc hướng dẫn thực hiện nhiệm vụ giáo dục tiểu học. Đặc biệt, Quyết định và Thông tư số 02/2025/TT-BGDĐT ban hành Quy định chuẩn kỹ năng số cho học sinh phổ thông đã xác lập khung năng lực bắt buộc bao gồm: Khả năng vận hành thiết bị, Đảm bảo an toàn trên môi trường số, và Ứng dụng công nghệ để giải quyết vấn đề học tập. Các văn bản này nhấn mạnh việc phát triển năng lực số không chỉ giới hạn trong môn Tin học mà phải được lồng ghép, tích hợp liên môn vào toàn bộ quá trình tổ chức dạy học và đánh giá thường xuyên.</p>
+        <p>Đề tài được xây dựng dựa trên hành lang pháp lý của ngành Giáo dục trong lộ trình chuyển đổi số, tiêu biểu là định hướng tại <strong> Công văn số 3456/BGDĐT-GDPT </strong> về việc hướng dẫn thực hiện nhiệm vụ giáo dục tiểu học. Đặc biệt,<strong> Thông tư số 02/2025/TT-BGDĐT </strong> ban hành Quy định chuẩn kỹ năng số cho học sinh phổ thông đã xác lập khung năng lực bắt buộc bao gồm: Khả năng vận hành thiết bị, Đảm bảo an toàn trên môi trường số, và Ứng dụng công nghệ để giải quyết vấn đề học tập. Các văn bản này nhấn mạnh việc phát triển năng lực số không chỉ giới hạn trong môn Tin học mà phải được lồng ghép, tích hợp liên môn vào toàn bộ quá trình tổ chức dạy học và đánh giá thường xuyên.</p>
         <h4>2.1.2. Cơ sở khoa học về Trí tuệ nhân tạo tạo sinh (Generative AI) và Hệ thống quản lý học tập (LMS)</h4>
         <p>Trong khoa học máy tính và công nghệ giáo dục, Trí tuệ nhân tạo tạo sinh (điển hình là mô hình ngôn ngữ lớn Gemini) không chỉ đóng vai trò là công cụ truy xuất thông tin mà còn hoạt động như một Trợ lý lập trình (AI Coding Assistant). Khả năng này cho phép chuyển đổi ngôn ngữ tự nhiên (các yêu cầu sư phạm của giáo viên) thành các đoạn mã nguồn phức tạp (HTML, JavaScript). Việc ứng dụng AI làm cầu nối kỹ thuật giúp giáo viên phổ thông có khả năng tự xây dựng và triển khai các Hệ thống quản lý học tập quy mô nhỏ (Mini-LMS) - nền tảng trực tuyến cho phép phân phối nội dung, tổ chức đánh giá và thu thập dữ liệu học tập theo thời gian thực một cách tự chủ (Self-hosted) mà không bị phụ thuộc vào các thiết chế phần mềm đóng gói sẵn.</p>
         <h4>2.1.3. Lý thuyết về mô hình Học tập kết hợp (Blended Learning) và Cá nhân hóa học tập (Personalized Learning)</h4>
@@ -280,7 +302,7 @@
         <p>Trước khi triển khai hệ thống Mini-LMS và mô hình Học tập kết hợp, công tác tổ chức dạy học, đánh giá thường xuyên và phát triển năng lực số cho học sinh lớp 4A tại đơn vị bộc lộ một số bất cập mang tính hệ thống, cụ thể như sau:</p>
 
         <h4>2.2.1. Thực trạng về công tác tổ chức củng cố kiến thức và cá nhân hóa tiến trình học tập</h4>
-        <p>Với định mức thời gian 35-40 phút/tiết học theo quy định của Chương trình Giáo dục phổ thông 2018, phần lớn thời lượng được sử dụng để tổ chức các hoạt động khám phá và hình thành kiến thức mới. Việc củng cố, ôn luyện kỹ năng giải bài tập đa môn (Toán, Tiếng Việt, Lịch sử - Địa lí, Khoa học...) thường được thực hiện đồng loạt. Phương pháp này bộc lộ hạn chế đối với nhóm học sinh có nhịp độ nhận thức chậm. Các em không có đủ thời gian để thực hiện quá trình tư duy độc lập, dẫn đến việc tiếp thu kiến thức mang tính thụ động, bề mặt và dễ bị lấp liếm bởi hiệu ứng trả lời tập thể. Mức độ phân hóa và cá nhân hóa quá trình ôn tập trên lớp chưa đạt hiệu quả như mong đợi do rào cản về quỹ thời gian và không gian vật lý.</p>
+        <p>Với định mức thời gian 30-35 phút/tiết học theo quy định của Chương trình Giáo dục phổ thông 2018, phần lớn thời lượng được sử dụng để tổ chức các hoạt động khám phá và hình thành kiến thức mới. Việc củng cố, ôn luyện kỹ năng giải bài tập đa môn (Toán, Tiếng Việt, Lịch sử - Địa lí, Khoa học...) thường được thực hiện đồng loạt. Phương pháp này bộc lộ hạn chế đối với nhóm học sinh có nhịp độ nhận thức chậm. Các em không có đủ thời gian để thực hiện quá trình tư duy độc lập, dẫn đến việc tiếp thu kiến thức mang tính thụ động, bề mặt và dễ bị lấp liếm bởi hiệu ứng trả lời tập thể. Mức độ phân hóa và cá nhân hóa quá trình ôn tập trên lớp chưa đạt hiệu quả như mong đợi do rào cản về quỹ thời gian và không gian vật lý.</p>
         <h4>2.2.2. Thực trạng về việc ứng dụng công nghệ thông tin trong đánh giá thường xuyên</h4>
         <p>Để khắc phục giới hạn thời gian trên lớp, giáo viên đã áp dụng hình thức giao bài tập về nhà thông qua các nền tảng khảo sát trực tuyến có sẵn (như Google Forms, Azota, Quizizz). Tuy nhiên, qua quá trình vận hành, các công cụ này bộc lộ những hạn chế về tính tùy biến cục bộ:</p>
         <ul>
@@ -303,6 +325,11 @@
         <li><strong>Phân hệ Điều hướng (<code>Menu.html</code>):</strong> Bảng điều khiển (Dashboard) hiển thị danh sách các môn học (Toán, Tiếng Việt, Khoa học, Lịch sử - Địa lí, Đạo đức, Công nghệ).</li>
         <li><strong>Phân hệ Xử lý logic cốt lõi (<code>core.js</code>):</strong> Chứa các thuật toán chấm điểm tự động, cung cấp phản hồi sư phạm (hiệu ứng âm thanh, hiển thị khung giải thích lỗi sai) và cơ chế chống gian lận (Anti-retake algorithm).</li>
         </ul>
+        <div class="image-wrapper">
+    <img src="2.3.1.1.png" alt="Minh chứng SKKN">
+    <span class="image-label">Hình 1: Sơ đồ cấu trúc hệ thống mi_ni_lms</span>
+</div>
+
         <p><strong>Bước 2: Tích hợp Cơ sở dữ liệu thời gian thực (Real-time Database) và thiết lập thuật toán bảo mật</strong></p>
         <p>Để lưu trữ và quản trị tiến trình học tập, tôi sử dụng Google Firebase. Dưới sự hỗ trợ của Gemini AI, tôi đã tiến hành cấu hình tệp <code>config.js</code> để thiết lập luồng giao tiếp dữ liệu hai chiều (Client - Server) giữa giao diện bài tập và cơ sở dữ liệu đám mây. Hai thuật toán quan trọng nhất được mã hóa thành công bao gồm:</p>
         <table>
@@ -319,6 +346,10 @@
         <td>Sử dụng thư viện JavaScript tạo hiệu ứng pháo hoa (Confetti) kết hợp kích hoạt tệp âm thanh lời khen ngợi của giáo viên định dạng <code>.mp3</code> khi học sinh đạt điểm tối đa.</td>
         </tr>
         </table>
+        <div class="image-wrapper">
+    <img src="2.3.1.2.jpg" alt="Minh chứng SKKN">
+    <span class="image-label">Hình 2: Ảnh chụp file core.js của hệ thống mi_ni_lms</span>
+</div>
 
         <p><strong>Bước 3: Tinh chỉnh Giao diện người dùng (UI) theo nguyên lý Thiết kế đáp ứng (Responsive Design) đa nền tảng</strong></p>
         <p>Để đảm bảo tính công bằng trong việc tiếp cận và sự linh hoạt của mô hình Học tập kết hợp, hệ thống Mini-LMS được thiết kế để vận hành trơn tru trên đa nền tảng (Cross-platform). Thông qua việc thiết lập các điểm ngắt (Breakpoints) trong tệp <code>style.css</code>, hệ thống tự động nhận diện thiết bị truy cập và điều chỉnh bố cục (Layout) tương thích:</p>
@@ -327,10 +358,20 @@
         <li><strong>Trên môi trường máy tính (PC/Laptop):</strong> Bố cục dàn trang rộng rãi, tối ưu cho thao tác chuột và bàn phím, giúp học sinh quan sát toàn diện văn bản và hình ảnh.</li>
         </ul>
         <p>Đặc tính này giúp học sinh có thể tận dụng bất kỳ thiết bị thông minh nào sẵn có của gia đình để tham gia ôn tập mà không gặp rào cản về mặt hiển thị hay tương tác.</p>
+        <div class="image-wrapper">
+    <img src="2.3.1.3.jpg" alt="Minh chứng SKKN">
+    <span class="image-label">Hình 3: Ảnh chụp code của file style.css của hệ thống</span>
+</div>
+
         <h4>2.3.2. Biện pháp 2: Triển khai mô hình Học tập kết hợp (Blended Learning) thông qua quy trình "Ôn tập tại nhà - Quản trị từ xa"</h4>
         <p>Sau khi thiết lập thành công nền tảng kỹ thuật, tôi tiến hành đưa hệ thống vào môi trường thực tế thông qua việc tái cấu trúc không gian và thời gian học tập. Biện pháp này giải quyết triệt để rào cản về định mức thời gian trên lớp và khắc phục tình trạng thiếu hụt thiết bị số tại trường học, được triển khai qua 3 bước:</p>
         <p><strong>Bước 1: Thiết lập môi trường học tập không đồng bộ (Asynchronous Learning) qua mạng xã hội</strong></p>
         <p>Thay vì tổ chức ôn luyện đồng loạt trên lớp, giáo viên sử dụng nền tảng liên lạc điện tử (nhóm Zalo lớp) để phân phối liên kết (Link) truy cập hệ thống Mini-LMS đến phụ huynh vào mỗi buổi tối. Việc dịch chuyển không gian học tập này mang lại hai giá trị sư phạm cốt lõi: <em>Thứ nhất,</em> tận dụng tối đa hạ tầng thiết bị cá nhân (điện thoại, máy tính) của gia đình để 100% học sinh đều được thực hành. <em>Thứ hai,</em> tạo điều kiện để học sinh thực hiện nhiệm vụ theo nhịp độ nhận thức cá nhân (Personalized Learning). Các em được phép suy nghĩ chậm lại, đọc kỹ câu hỏi và tự giải quyết vấn đề mà không chịu áp lực về thời gian hay tâm lý so sánh với bạn bè đồng trang lứa.</p>
+        <div class="image-wrapper">
+    <img src="2.3.2.1.jpg" alt="Minh chứng SKKN">
+    <span class="image-label">Hình 4: Ảnh chụp giáo viên gửi mật khẩu ngày và giao bài trên zalo nhóm lớp</span>
+</div>
+
         <p><strong>Bước 2: Vận hành cơ chế "Điều khiển cấu hình từ xa" (Remote Configuration) định hướng luồng học tập</strong></p>
         <p>Để tránh tình trạng học sinh truy cập tự do, mất tập trung vào các môn học không nằm trong phân phối chương trình của ngày hôm đó, tôi đã ứng dụng tính năng điều khiển từ xa thông qua cơ sở dữ liệu Firebase. Cụ thể:</p>
         <ul>
@@ -338,6 +379,11 @@
         <li>Tại hệ thống quản trị Firebase, giáo viên trực tiếp thay đổi tham số trạng thái (Boolean: True/False) của từng môn học. Ngay lập tức, trên giao diện thiết bị của học sinh, chỉ những môn học được giáo viên kích hoạt (Enable) mới hiển thị nút tương tác sáng màu; các môn còn lại tự động bị chuyển sang trạng thái vô hiệu hóa (Disabled/Grayed out).</li>
         </ul>
         <p>Cơ chế này giúp giáo viên nắm giữ quyền chủ động tuyệt đối trong việc định hướng luồng học tập của học sinh từ xa, đồng thời tối giản hóa thao tác tiếp nhận thông tin cho phụ huynh.</p>
+        <div class="image-wrapper">
+    <img src="2.3.2.2.jpg" alt="Minh chứng SKKN">
+    <span class="image-label">Hình 5: Ảnh chụp giao diện Quản trị hệ thống của giáo viên</span>
+</div>
+
         <p><strong>Bước 3: Quản trị dữ liệu thời gian thực và điều chỉnh kế hoạch dạy học (Data-driven Teaching)</strong></p>
         <p>Toàn bộ kết quả ôn tập (bao gồm: mã định danh, điểm số, thời gian nộp bài) được hệ thống tự động đẩy về máy chủ đám mây. Giáo viên theo dõi tiến trình này thông qua tệp giao diện quản trị <code>Bang_Tong_hop_Ket_Qua.html</code>.</p>
         <ul>
@@ -345,20 +391,40 @@
         <li><strong>Trích xuất và phân tích:</strong> Hệ thống tích hợp thuật toán xuất dữ liệu trực tiếp ra định dạng Excel. Dựa trên các tham số thống kê này, giáo viên chẩn đoán chính xác những lỗ hổng kiến thức của từng nhóm học sinh (ví dụ: nhóm học sinh thường xuyên làm sai các câu hỏi liên quan đến phân số trong môn Toán).</li>
         </ul>
         <p>Từ dữ liệu thu thập được ở không gian trực tuyến buổi tối, giáo viên sẽ có cơ sở khoa học để điều chỉnh kế hoạch bài dạy, tập trung chữa các lỗi sai phổ biến ngay trong 5 phút đầu của tiết học trực tiếp ngày hôm sau, hiện thực hóa triết lý "Dạy học dựa trên minh chứng dữ liệu".</p>
+        <div class="image-wrapper">
+    <img src="2.3.2.3.jpg" alt="Minh chứng SKKN">
+    <span class="image-label">Hình 6: Ảnh chụp kết quả làm bài của học sinh theo thời gian thực</span>
+</div>
+
         <h4>2.3.3. Biện pháp 3: Tích hợp phát triển Năng lực số thông qua chuỗi thao tác tương tác bắt buộc trên nền tảng Mini-LMS</h4>
         <p>Thực hiện định hướng của Thông tư 02/2025/TT-BGDĐT, việc giáo dục Năng lực số không thể bị cô lập thành một môn học lý thuyết đơn thuần. Do đó, tôi đã thiết kế kiến trúc của hệ thống Mini-LMS sao cho bản thân quy trình học sinh truy cập và làm bài đã là một chuỗi thực hành kỹ năng số mang tính "sinh tồn". Các thành tố năng lực được lồng ghép tự nhiên thông qua 3 khía cạnh tương tác cốt lõi:</p>
         <p><strong>Khía cạnh 1: Hình thành năng lực "An toàn số" thông qua cơ chế xác thực thông tin (Authentication)</strong></p>
         <p>Để khắc phục tình trạng học sinh lớp 4 thiếu ý thức bảo mật tài khoản cá nhân, phân hệ đăng nhập (<code>index.html</code>) được thiết lập thuật toán yêu cầu xác thực kép. Thay vì chỉ nhập tên, hệ thống yêu cầu học sinh phải thực hiện đồng thời hai thao tác:</p>
         <ul>
         <li>Nhập chính xác <em>Mã định danh cá nhân (Student ID)</em> đã được giáo viên cấp phát.</li>
-        <li>Trả lời đúng <em>Câu hỏi bảo mật động</em>. Nội dung câu hỏi này được giáo viên thay đổi liên tục theo thời gian thực trên cơ sở dữ liệu Firebase (ví dụ: "Mật khẩu hôm nay là kết quả của phép tính 5 x 8?").</li>
+        <li>Trả lời đúng <em>Câu hỏi bảo mật động</em>. Nội dung câu hỏi này được giáo viên thay đổi liên tục theo thời gian thực trên cơ sở dữ liệu Firebase (ví dụ: "Hôm nay bạn nào được tuyên dương trước lớp?").</li>
         </ul>
         <p>Việc rèn luyện thói quen không chia sẻ mã định danh và nhận diện sự thay đổi của các lớp bảo mật giúp học sinh bước đầu hình thành tư duy phòng vệ, ý thức được tầm quan trọng của việc kiểm soát quyền truy cập trên không gian mạng.</p>
+        <div class="image-wrapper">
+    <img src="2.3.3.1.jpg" alt="Minh chứng SKKN">
+    <span class="image-label">Hình 7: Giao diện đăng nhập của học sinh với 2 lớp bảo mật</span>
+</div>
+
         <p><strong>Khía cạnh 2: Phát triển năng lực "Vận hành thiết bị" qua trải nghiệm giao diện người dùng (UI/UX)</strong></p>
         <p>Môi trường làm bài trên Mini-LMS yêu cầu học sinh phải thực hiện các chuỗi thao tác cơ học và tư duy logic liên tục trên thiết bị thông minh. Các em được rèn luyện kỹ năng điều hướng trình duyệt web (Browser navigation), thao tác cuộn trang (Scrolling), lựa chọn đáp án thông qua nút bấm (Radio buttons/Checkboxes), và xác nhận gửi dữ liệu lên máy chủ (Submit). Quá trình lặp đi lặp lại hằng ngày này giúp học sinh chuyển hóa các thao tác công nghệ từ mức độ "chủ ý" sang "tự động hóa", tăng cường sự tự tin khi tiếp xúc với các nền tảng học tập E-learning trong tương lai.</p>
+        <div class="image-wrapper">
+    <img src="2.3.3.2.jpg" alt="Minh chứng SKKN">
+    <span class="image-label">Hình 8: Phản hồi thực tế của học sinh qua ảnh chụp màn hình zalo trên nhóm lớp</span>
+</div>
+
         <p><strong>Khía cạnh 3: Nâng cao năng lực "Giải quyết vấn đề" thông qua hệ thống hỗ trợ giàn giáo (Scaffolding System)</strong></p>
         <p>Dựa trên lý thuyết Vùng phát triển gần (Zone of Proximal Development - ZPD) của L. Vygotsky, tôi đã lập trình tính năng phản hồi sư phạm (Feedback) trực tiếp vào tệp <code>core.js</code>. Khi học sinh trả lời sai một câu hỏi trắc nghiệm, thay vì chỉ hiển thị kết quả "Sai", hệ thống sẽ tự động kích hoạt một khung hiển thị <strong>" Gợi ý/Giải thích"</strong> màu cam. Nội dung này cung cấp các từ khóa hoặc quy tắc cốt lõi (ví dụ: quy tắc tính diện tích hình chữ nhật) để định hướng tư duy.</p>
         <p>Học sinh buộc phải đọc hiểu đoạn văn bản hỗ trợ này, đối chiếu với sai lầm của bản thân và tự tìm ra đáp án đúng. Quá trình này giáo dục cho các em một kỹ năng số bậc cao: <em>Sử dụng công nghệ như một công cụ hỗ trợ tư duy để tự học và tự giải quyết vấn đề</em>, thay vì thái độ ỷ lại vào giáo viên.</p>
+      
+        <div class="image-wrapper">
+    <img src="2.3.3.3.jpg" alt="Minh chứng SKKN">
+    <span class="image-label">Hình 9: Tính năng phản hồi- gợi ý cho học sinh</span>
+</div>
         <h3>2.4. Hiệu quả của sáng kiến kinh nghiệm</h3>
         <p>Sau một thời gian vận hành thực nghiệm hệ thống Mini-LMS và mô hình Học tập kết hợp đối với khách thể là 31 học sinh lớp 4A, thông qua việc trích xuất dữ liệu định lượng từ hệ thống máy chủ Firebase và đối chiếu định tính qua quan sát sư phạm, sáng kiến đã mang lại những hiệu quả đột phá trên 3 phương diện cốt lõi:</p>
         <h4>2.4.1. Hiệu quả về mặt nâng cao chất lượng học tập đa môn (Định lượng)</h4>
@@ -378,21 +444,21 @@
         <tr>
         <td>Tỷ lệ HS tự giác hoàn thành bài tập về nhà</td>
         <td>18</td>
-        <td>58.1%</td>
-        <td>31</td>
+        <td>54.5%</td>
+        <td>33</td>
         <td>100%</td>
         </tr>
         <tr>
         <td>Nhóm HS có kết quả đánh giá thường xuyên môn Toán ở mức "Chưa hoàn thành" (Yếu)</td>
         <td>6</td>
-        <td>19.4%</td>
+        <td>15.2%</td>
         <td>0</td>
         <td>0%</td>
         </tr>
         <tr>
         <td>Nhóm HS có kết quả đánh giá thường xuyên môn Tiếng Việt ở mức "Chưa hoàn thành" (Yếu)</td>
-        <td>5</td>
-        <td>16.1%</td>
+        <td>4</td>
+        <td>12.1%</td>
         <td>0</td>
         <td>0%</td>
     </tr>
@@ -423,15 +489,15 @@
         <td>Khi thao tác trả lời sai, 100% học sinh biết cách chủ động kích hoạt và đọc hiểu khung " Gợi ý/Giải thích" từ hệ thống để tự sửa lỗi, giảm thiểu sự phụ thuộc trực tiếp vào giáo viên.</td>
         <td>100%</td>
     </tr>
-</table>
+    </table>
 
-<h4>2.4.3. Hiệu quả đối với Giáo viên và Nhà trường (Tính kinh tế và Tính tự chủ)</h4>
-<p>Đối với cá nhân tôi và tổ chuyên môn, đề tài đã thay đổi hoàn toàn tư duy ứng dụng công nghệ trong giáo dục:</p>
-<ul>
-    <li><strong>Tối ưu hóa thời gian lao động sư phạm:</strong> Khâu chấm bài, thống kê lỗi sai và lập bảng điểm được tự động hóa 100% thông qua thuật toán của tệp <code>core.js</code> và Firebase, giúp giáo viên tiết kiệm trung bình 5-7 giờ làm việc mỗi tuần.</li>
+    <h4>2.4.3. Hiệu quả đối với Giáo viên và Nhà trường (Tính kinh tế và Tính tự chủ)</h4>
+    <p>Đối với cá nhân tôi và tổ chuyên môn, đề tài đã thay đổi hoàn toàn tư duy ứng dụng công nghệ trong giáo dục:</p>
+    <ul>
+    <li><strong>Tối ưu hóa thời gian lao động sư phạm:</strong> Khâu chấm bài, thống kê lỗi sai và lập bảng điểm được tự động hóa 100% thông qua thuật toán của tệp <code>core.js</code> và Firebase, giúp giáo viên tiết kiệm thời gian để dành thêm cho việc nghiên cứu bài dạy và tương tác với học sinh.</li>
     <li><strong>Làm chủ công nghệ với chi phí 0 đồng:</strong> Lần đầu tiên, giáo viên sở hữu một hệ thống LMS chuyên nghiệp với cơ chế quản trị từ xa (Remote Control) mà không phải trả phí duy trì máy chủ hay phí bản quyền cho các nền tảng thương mại, đảm bảo tính bảo mật dữ liệu nội bộ tuyệt đối của nhà trường.</li>
-    <li><strong>Nâng tầm năng lực nghề nghiệp:</strong> Việc sử dụng thành thạo mô hình AI (Gemini) trong kỹ thuật thiết kế câu lệnh (Prompt Engineering) khẳng định sự thích ứng xuất sắc của giáo viên trước làn sóng Trí tuệ nhân tạo, mở ra hướng đi mới trong việc tự thiết kế học liệu số.</li>
-</ul>
+    <li><strong>Nâng tầm năng lực nghề nghiệp:</strong> Việc sử dụng thành thạo mô hình AI (Gemini) trong kỹ thuật thiết kế câu lệnh (Prompt Engineering) khẳng định sự thích ứng kịp thời của giáo viên trước làn sóng Trí tuệ nhân tạo, mở ra hướng đi mới trong việc tự thiết kế học liệu số.</li>
+    </ul>
     </div>
     <div class="paper-section">
         <h2 style="text-align: center;">PHẦN III: KẾT LUẬN VÀ KIẾN NGHỊ</h2>
@@ -446,22 +512,22 @@
         <h4>3.2. Kiến nghị</h4>
         <p>Từ những kết quả khả quan của đề tài, tôi xin đề xuất một số nội dung nhằm lan tỏa và nâng cao hiệu quả của mô hình:</p>
         <ul>
-        <li><strong>Đối với các cấp quản lý giáo dục:</strong> Cần tổ chức các đợt tập huấn về Kỹ thuật thiết kế câu lệnh (Prompt Engineering) và ứng dụng AI tạo sinh trong thiết kế học liệu số, thay vì chỉ dừng lại ở việc bồi dưỡng sử dụng các phần mềm đóng gói sẵn.</li>
-    <li><strong>Đối với Ban giám hiệu nhà trường:</strong> Khuyến khích xây dựng kho mã nguồn mở (Open-source) cấp đơn vị để chia sẻ các tệp cấu hình Mini-LMS, giúp các tổ chuyên môn dễ dàng tái sử dụng và tùy biến cho nhiều khối lớp khác nhau.</li>
+        <li><strong>Đối với các cấp quản lý giáo dục:</strong> Cần tổ chức thêm nhiều đợt tập huấn về Kỹ thuật thiết kế câu lệnh (Prompt Engineering) và ứng dụng AI tạo sinh trong thiết kế học liệu số.</li>
+    <li><strong>Đối với Ban giám hiệu nhà trường:</strong> Bên cạnh sử dụng học liệu truyền thống, nên tập huấn và khuyến khích sử dụng định dạng HTML trong thiết kế bài dạy , thúc dẩy xây dựng kho mã nguồn mở (Open-source) cấp đơn vị để chia sẻ các tệp cấu hình Mini-LMS,các trò chơi tương tác dựa trên ngôn ngữ html,css,javaScript,.. giúp các tổ chuyên môn dễ dàng tái sử dụng và tùy biến cho nhiều khối lớp khác nhau.</li>
     
-    <li><strong>Đối với đồng nghiệp:</strong> Cần chủ động thích ứng với tư duy "AI Co-pilot", coi AI là người đồng hành kỹ thuật để giải phóng sức lao động sư phạm và tập trung vào các hoạt động sáng tạo, tương tác với học sinh.</li>
-</ul>
+    <li><strong>Đối với đồng nghiệp:</strong> Khi sử dụng AI cho công việc, cần nhận thức rõ vai trò của giáo viên và vai trò của AI trên tinh thần hợp tác và người dùng luôn đóng vai trò chỉ đạo, tổ chức thực hiện, kiểm tra và đánh giá kết quả cũng như chịu trách nhiệm về kết quả cuối cùng. Vai trò này được thống nhất với AI ngay từ đầu để đảm bảo quá trình hợp tác giáo viên- AI mang lại hiệu quả thực chất. Cần chủ động thích ứng với tư duy "AI Co-pilot", coi AI là công cụ kỹ thuật để giải phóng sức lao động sư phạm và tập trung vào các hoạt động sáng tạo, tương tác với học sinh.</li>
+    </ul>
 
-<p style="margin-top: 50px; text-align: right;">
-    <em>Triệu Lộc, ngày 22 tháng 2 năm 2026</em><br>
+    <p style="margin-top: 50px; text-align: right;">
+    <em>Triệu Lộc, ngày 25 tháng 2 năm 2026</em><br>
     <strong>Người viết sáng kiến</strong><br><br><br><br><br>
     <strong>Phan Văn Tuyến</strong>
-</p>
+    </p>
 </div>
 <div class="paper-section">
         <h2 style="text-align: center;">PHỤ LỤC: TÀI LIỆU THAM KHẢO VÀ MINH CHỨNG THỰC TẾ</h2>
         <h4>1. Danh mục các văn bản chỉ đạo làm cơ sở pháp lý cho đề tài</h4>
-<table>
+    <table>
     <tr>
         <th style="width: 10%;">STT</th>
         <th style="width: 30%;">Số hiệu văn bản</th>
@@ -484,8 +550,8 @@
     </tr>
 </table>
 
-<h4>2. Giải nghĩa các thuật ngữ chuyên môn sử dụng trong đề tài</h4>
-<table>
+        <h4>2. Giải nghĩa các thuật ngữ chuyên môn sử dụng trong đề tài</h4>
+    <table>
     <tr>
         <th style="width: 30%;">Thuật ngữ</th>
         <th style="width: 70%;">Giải nghĩa khoa học</th>
@@ -514,33 +580,38 @@
         <td><strong>Responsive Design</strong></td>
         <td>Thiết kế đáp ứng, giúp giao diện hệ thống tự động tương thích với nhiều loại màn hình (Điện thoại, Máy tính).</td>
     </tr>
-</table>
+    </table>
 
-<h4>3. Địa chỉ truy xuất minh chứng kỹ thuật và vận hành thực tế</h4>
-<p>Để đảm bảo tính minh bạch về mã nguồn và cung cấp cái nhìn trực quan về quy trình vận hành, tác giả cung cấp các địa chỉ truy cập sau:</p>
+        <h4>3. Địa chỉ truy xuất minh chứng kỹ thuật và vận hành thực tế</h4>
+        <p>Để đảm bảo tính minh bạch về mã nguồn và cung cấp cái nhìn trực quan về quy trình vận hành, tác giả cung cấp các địa chỉ truy cập sau:</p>
 
-<div class="link-box">
+    <div class="link-box">
     <p><strong>3.1. Kho lưu trữ mã nguồn (Github Repository):</strong></p>
-    <p>Địa chỉ: <code>https://github.com/phanvantuyen283/mi_ni_lms</code></p>
-    <p><em>(Nơi lưu trữ toàn bộ file HTML, CSS, JS và cấu hình Firebase của hệ thống để Hội đồng Khoa học truy nhập trực tiếp và tải các file code đã được xây dựng của hệ thống cũng như truy xuất bằng chứng hoạt động của dự án dựa trên các số liệu công khai tài khoản Github của tác giả ).</em></p>
-</div>
-<div class="link-box">
-    <p><strong>3.2. Địa chỉ trải nghiệm người dùng:</strong></p>
-    <p>Địa chỉ truy cập ứng dụng:<code> https://phanvantuyen283.github.io/mi_ni_lms/</code></p>
-    <p>Tài khoản thử nghiệm hệ thống <em>(lựa chọn từ menulist):<code></em><strong>---GIÁO VIÊN TEST---</strong></code></p>
-    <P>Mật khẩu cho tài khoản thử nghiệm:<strong><code>123456</code></strong></P>
-    <p><em><strong>Hội đồng Khoa học</strong> có thể truy nhập vào hệ thống mi_ni_lms của dự án theo đường dẫn và sử dụng tài khoản, mật khẩu thử nghiệm để đánh trải nghiệm người dùng (với vai trò người học) trực tuyến.<br>
+    <p><strong>Hội đồng Khoa học</strong> có thể truy cập và xem xét toàn bộ các file html, css, js và cấu hình Firebase đã được thiết lập và sử dụng cho dự án mi_ni_lms bằng hai cách:</p>
+    <p>Cách 1: Truy cập vào địa chỉ: <code>"https://phanvantuyen283.github.io/mi_ni_lms"</code></p>
+    <p>Cách 2: Nhấn vào nút bấm Show Source trên trang tải nội dung Đề tài trực tuyến tại địa chỉ <code>"https://phanvantuyen283.github.io/Sang_kien_kinh_nghiem_Nam_hoc_2025_2026"</code></p>
+    </div>
+        <div class="link-box">
+        <p><strong>3.2. Địa chỉ trải nghiệm người dùng:</strong></p>
+        <p>Địa chỉ truy cập ứng dụng mi_ni_lms:<code> https://phanvantuyen283.github.io/mi_ni_lms/</code></p>
+        <p>Tài khoản thử nghiệm hệ thống <em>(lựa chọn từ menulist):<code></em><strong>---GIÁO VIÊN TEST---</strong></code></p>
+        <P>Mật khẩu cho tài khoản thử nghiệm:<strong><code>123456</code></strong></P>
+        <p><em><strong>Hội đồng Khoa học</strong> có thể truy nhập vào hệ thống mi_ni_lms của dự án theo đường dẫn và sử dụng tài khoản, mật khẩu thử nghiệm để đánh trải nghiệm người dùng (với vai trò người học) trực tuyến.<br>
     Nếu <strong> Hội đồng Khoa học </strong> yêu cầu trải nghiệm quản trị hệ thống (trải nghiệm và kiểm tra công cụ quản trị) xin vui lòng liên hệ với tác giả.<br> Xin cảm ơn!</em></p>
-</div>
-<div class="link-box">
-    <p><strong>3.3. Không gian minh chứng thực tế (Padlet):</strong></p>
-    <p>Địa chỉ: <code>https://padlet.com/pvtuyen/padlet-s-i-n-i-c-a-t-i-r2nfljpnqtymobb0</code></p>
-    <p><em>(Nơi chứa các video học sinh thao tác, ảnh chụp màn hình cơ sở dữ liệu Firebase và phản hồi của phụ huynh).</em></p>
-</div>
-</div>
-<footer style="text-align: center; padding: 20px; color: #777;">
-    <p>&copy; 2026 - Tác giả: Phan Văn Tuyến - Trường Tiểu học Châu Lộc- xã Triệu Lộc - tỉnh Thanh Hóa</p>
-</footer>
+    </div>
+    <div class="link-box">
+    <p><strong>3.3. Phiên bản trực tuyến của Đề tài :</strong></p>
+    <p> Quý thầy cô có thể truy cập vào địa chỉ:<br>
+    <code>"https://phanvantuyen283.github.io/Sang_kien_kinh_nghiem_Nam_hoc_2025_2026/"</code> <br>
+    để xem nội dung, tải file pdf, in nội dung đề tài hoặc xem những file code của hệ thống mi_ni_lms mà tác giả đã xây dựng.</p>
+    </div>
+    </div>
+    </div>
+        <footer style="text-align: center; padding: 20px; color: #777;">
+        <p>&copy; 2026 - Tên người viết: Phan Văn Tuyến<br>
+        Đơn vị: Trường Tiểu học Châu Lộc- xã Triệu Lộc - tỉnh Thanh Hóa<br>
+        Email: pvtuyen@moet.edu.vn.</p>
+        </footer>
 
 </body>
 </html>
