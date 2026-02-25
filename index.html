@@ -145,6 +145,56 @@
 }
 
 }
+/* 1. Thiết lập mặc định cho màn hình lớn (Máy tính) */
+.paper-section, .cover-page, .toc-page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 20mm 15mm 20mm 30mm;
+    margin: 20px auto;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+/* 2. THIẾT LẬP DÀNH RIÊNG CHO ĐIỆN THOẠI (Mobile) */
+@media screen and (max-width: 768px) {
+    .paper-section, .cover-page, .toc-page {
+        width: 95%; /* Tự động co lại theo chiều rộng màn hình điện thoại */
+        height: auto; /* Không ép chiều cao để tránh thừa khoảng trắng */
+        min-height: unset;
+        margin: 10px auto;
+        padding: 15px; /* Giảm lề để ưu tiên không gian hiển thị chữ */
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    /* Chỉnh cỡ chữ cho dễ đọc trên điện thoại */
+    body {
+        font-size: 16px; 
+    }
+    
+    /* Đảm bảo ảnh không bị tràn màn hình điện thoại */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* 3. THIẾT LẬP CỐ ĐỊNH KHI NHẤN LỆNH IN (Vẫn giữ chuẩn A4) */
+@media print {
+    @page {
+        size: A4;
+        margin: 0;
+    }
+    .paper-section, .cover-page, .toc-page {
+        width: 210mm !important;
+        height: 297mm !important;
+        padding: 20mm 15mm 20mm 30mm !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        page-break-after: always;
+    }
+}
 
 
     </style>
