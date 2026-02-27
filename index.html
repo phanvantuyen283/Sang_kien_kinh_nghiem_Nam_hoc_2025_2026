@@ -91,6 +91,23 @@
                 size: A4;
                 margin: 20mm 20mm 20mm 30mm; 
             }
+            body{ counter-reset: page-count 0;}
+            .paper-section{counter-increment: page-count;
+                          position: relative;}
+            .paper-section::before{
+                content: counter(page-count);
+                position: absolute;
+                top: -12mm; [span_5](start_span)/* Đưa lên lề trên[span_5](end_span) */
+                left: 50%;
+                transform: translateX(-50%);
+                font-family:"Times New Roman", serif;
+                font-style: normal;
+                font-size: 13pt; [span_6](start_span)/* Cỡ chữ theo quy định[span_6](end_span) */
+                color:#000;  
+            }
+            .appendix-section{
+                counter-increment: none;}
+            
 
             /* Hủy bỏ bóng đổ, khung viền. Đặc biệt KHÔNG ĐỂ chiều cao cố định để chống trang trắng */
             .paper-section, .cover-page, .toc-page {
