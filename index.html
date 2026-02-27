@@ -110,7 +110,7 @@
             .cover-page,  {
                 width: 210mm;
                 min-height: auto;
-                height: 270mm;
+                height: 290mm;
                 margin: 10px auto;
                 padding: 15px !important; /* Thu gọn lề trên điện thoại để dễ đọc */
                 box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -132,8 +132,7 @@
             body { background: white; font-size: 14pt; line-height: 1.2; color: #000; }
             header, .nav-buttons, footer, .btn { display: none !important; }
             .container { max-width: 100%; margin: 0; padding: 0; }
-            .ngat_trang{break-before: page;}    
-            .cuoi_bia{margin-bottom: 22mm}
+            
             /* Gỡ bỏ các hộp màu và khung viền web khi in */
             .paper-section, .cover-page, .toc-page {
                 width: 100% !important;
@@ -148,6 +147,7 @@
             /* Tối ưu hóa màu sắc in */
             * { background: transparent !important; color: #000 !important; text-shadow: none !important; box-shadow: none !important; }
             th { background: #f2f2f2 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .ngat_trang{break-before: page;}
         }
     </style>
 
@@ -183,15 +183,17 @@
         <div class="cover-info">
             <strong>Lĩnh vực:</strong> Ứng dụng Công nghệ thông tin<br>
             <strong>Người thực hiện:</strong>  Phan Văn Tuyến<br>
-            <strong>Đơn vị:</strong> Trường Tiểu học Châu Lộc<br><br><br><br><br>
-            <p style="Text-align: center;> "Triệu Lộc, năm 2026"</p>
+            <strong>Đơn vị:</strong> Trường Tiểu học Châu Lộc<br><br><br><br><br><br>
         </div>
+
+        <div class="cover-footer">
+            TRIỆU LỘC, NĂM 2026
         </div>
     </div>
 </div>
 <div class="page-break"></div> 
 
-
+<div class=".ngat_trang"></div>
 <div class="container">
         <div class="toc-page">
     <div class="toc-title">MỤC LỤC</div>
@@ -532,7 +534,6 @@
     <strong>Phan Văn Tuyến</strong>
     </p>
    <div class=".page-break"></div>
-   <div class="ngat_trang"></div>
 </div>
 <div class="paper-section">
         <h2 style="text-align: center;">PHỤ LỤC: TÀI LIỆU THAM KHẢO VÀ MINH CHỨNG THỰC TẾ</h2>
