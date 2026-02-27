@@ -209,30 +209,36 @@
             .toc-text::after { content: none; } /* Tắt dấu chấm mục lục trên mobile */
         }
 
-        /* 4. THIẾT LẬP IN ẤN CHUẨN (Print) */
+                /* THIẾT LẬP IN ẤN CHUẨN (Print) */
         @media print {
+            /* Ẩn hoàn toàn Header, Nút bấm và Footer của trang web khi in */
+            header, .nav-buttons, footer, .btn { 
+                display: none !important; 
+            }
+            
+            /* Tùy chỉnh lề máy in khớp Mẫu 1 */
             @page {
                 size: A4;
-                margin: 20mm 20mm 20mm 30mm; /* Đẩy lề in trực tiếp vào hệ thống của máy in */
+                margin: 20mm 20mm 20mm 30mm; 
             }
-            body { background: white; font-size: 14pt; line-height: 1.2; color: #000; }
-            header, .nav-buttons, footer, .btn { display: none !important; }
-            .container { max-width: 100%; margin: 0; padding: 0; }
             
-            /* Gỡ bỏ các hộp màu và khung viền web khi in */
+            body { 
+                background: white; 
+                font-size: 14pt; 
+                line-height: 1.2; 
+                color: #000; 
+            }
+            
             .paper-section, .cover-page, .toc-page {
                 width: 100% !important;
-                min-height: auto !important;
                 padding: 0 !important; 
                 margin: 0 !important;
                 box-shadow: none !important;
                 border: none !important;
             }
-            .cover-page { height: 100vh !important; } /* Ép bìa chiếm trọn 1 trang in */
             
-            /* Tối ưu hóa màu sắc in */
-            * { background: transparent !important; color: #000 !important; text-shadow: none !important; box-shadow: none !important; }
-            th { background: #f2f2f2 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            /* Ngắt trang chuẩn */
+            .cover-page { page-break-after: always; }
         }
     </style>
 
