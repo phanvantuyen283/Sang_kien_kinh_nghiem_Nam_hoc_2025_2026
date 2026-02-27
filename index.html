@@ -5,20 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sáng kiến Kinh nghiệm 2026 - Trường Tiểu học Châu Lộc</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-        <style>
+              <style>
         :root { --primary: #2c3e50; --secondary: #3498db; --accent: #27ae60; --light: #f4f7f6; }
+        body { font-family: 'Times New Roman', Times, serif; line-height: 1.5; margin: 0; color: #333; background: var(--light); font-size: 14pt;}
         
-        /* 1. THIẾT LẬP CHUNG (Chuẩn văn bản SKKN) */
-        body { 
-            font-family: 'Times New Roman', Times, serif; 
-            font-size: 14pt; /* Cỡ chữ 14 chuẩn */
-            line-height: 1.2; /* Dãn dòng đơn (Single) */
-            margin: 0; 
-            color: #333; 
-            background: var(--light); 
-        }
-        
-        /* Header & Navigation (Phần phụ trợ web) */
+        /* 1. HEADER & NÚT BẤM (Chỉ hiện trên web) */
         header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 40px 20px; text-align: center; }
         .nav-buttons { margin-top: 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .btn { display: inline-block; padding: 10px 25px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: 0.3s; cursor: pointer; border: none; font-size: 12pt;}
@@ -27,221 +18,95 @@
         .btn-source { background: var(--primary); color: white; }
         .btn:hover { opacity: 0.8; transform: translateY(-2px); }
 
+        /* 2. CẤU TRÚC CHUNG CỦA BÀI VIẾT */
         .container { max-width: 210mm; margin: 0 auto; }
-        
-        /* Typography (Định dạng chữ) */
-        h1, h2, h3 { color: var(--primary); margin-top: 20px; margin-bottom: 10px; }
-        h1 { font-size: 16pt; text-transform: uppercase; }
-        h2 { font-size: 15pt; text-transform: uppercase; }
-        h3 { font-size: 14pt; }
+        h1, h2, h3 { color: var(--primary); margin-top: 15px; margin-bottom: 10px; }
         p { margin-top: 0; margin-bottom: 12px; text-align: justify; }
-        .indent { text-indent: 1.27cm; } /* Thụt lề đoạn chuẩn Word */
+        .indent { text-indent: 1.27cm; }
         
-        /* 2. ĐỊNH DẠNG KHUNG TRANG A4 TRÊN WEB */
-        .paper-section, .cover-page, .toc-page { 
-            width: 210mm; 
-            min-height: 297mm; 
-            padding: 20mm 20mm 20mm 30mm; /* LỀ CHUẨN: Trên 2cm, Phải 2cm, Dưới 2cm, Trái 3cm */
-            margin: 20px auto; 
-            background: white; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
-            box-sizing: border-box; 
-            text-align: justify;
+        /* Bảng biểu & Ảnh */
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #000; padding: 10px; text-align: center; font-size: 13pt; }
+        th { background: #f8f9fa; font-weight: bold; }
+        .image-wrapper { text-align: center; margin: 25px 0; page-break-inside: avoid; }
+        .image-wrapper img { max-width: 85%; height: auto; border: 1px solid #333; padding: 3px; background-color: #fff; }
+        .image-label { display: block; font-size: 13pt; font-style: italic; margin-top: 10px; }
+        .link-box code { background: #eee; padding: 2px 5px; color: #d35400; font-family: monospace; }
+
+        /* 3. KHUNG TRANG A4 (Hiển thị trên trình duyệt web) */
+        .paper-section, .cover-page, .toc-page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm 20mm 20mm 30mm; /* Lề chuẩn: Trái 3cm, các lề khác 2cm */
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+            position: relative;
         }
 
-        /* Định dạng Bìa */
-        .cover-border {
-            border: 4px double #000;
-            height: 100%;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            box-sizing: border-box;
-        }
+        /* Trang bìa */
+        .cover-border { border: 4px double #000; height: 100%; min-height: 245mm; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; box-sizing: border-box; }
         .cover-header { text-align: center; font-size: 15pt; font-weight: bold; line-height: 1.5; }
-        .cover-title-box { text-align: center; margin-top: 40mm; width: 100%; }
-        .cover-label { font-size: 15pt; font-weight: bold; margin-bottom: 20px; }
+        .cover-title-box { text-align: center; margin-top: 30mm; width: 100%; }
+        .cover-label { font-size: 16pt; font-weight: bold; margin-bottom: 20px; }
         .cover-subject { font-size: 16pt; font-weight: bold; text-transform: uppercase; line-height: 1.4; padding: 0 10px; }
-        .cover-info { margin-top: 40mm; width: 100%; padding-left: 30mm; font-size: 14pt; line-height: 1.5; text-align: left; }
+        .cover-info { margin-top: 30mm; width: 100%; padding-left: 30mm; font-size: 14pt; line-height: 1.8; text-align: left; }
         .cover-footer { font-size: 14pt; font-weight: bold; margin-bottom: 10mm; }
-        
-        /* Định dạng Mục lục */
-        .toc-title { text-align: center; font-size: 15pt; font-weight: bold; text-transform: uppercase; margin-bottom: 30px; }
+
+        /* Mục lục */
+        .toc-title { text-align: center; font-size: 16pt; font-weight: bold; text-transform: uppercase; margin-bottom: 30px; }
         .toc-list { list-style: none; padding: 0; }
         .toc-item { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px; font-size: 14pt; }
         .toc-text { flex: 1; position: relative; overflow: hidden; }
-        .toc-text::after {
-            content: " ..........................................................................................................................................................................................";
-            position: absolute; padding-left: 5px; color: #000; letter-spacing: 2px;
-        }
+        .toc-text::after { content: " .........................................................................................................................................................................................."; position: absolute; padding-left: 5px; color: #000; }
         .toc-page-num { padding-left: 10px; font-weight: bold; background: white; z-index: 1; }
-        .toc-sub-item { padding-left: 1.27cm; font-size: 14pt; margin-top: 5px; }
+        .toc-sub-item { padding-left: 1.27cm; }
 
-        /* Định dạng Bảng biểu (Tables) */
-        table { width: 100%; border-collapse: collapse; margin: 15px 0; page-break-inside: auto; }
-        tr { page-break-inside: avoid; page-break-after: auto; }
-        th, td { border: 1px solid #000; padding: 8px; text-align: center; font-size: 13pt; }
-        th { background: #f2f2f2; font-weight: bold; text-align: center; }
-
-        /* Định dạng Ảnh minh họa (Images) */
-        .image-wrapper { text-align: center; margin: 20px 0; page-break-inside: avoid; }
-        .image-wrapper img { max-width: 90%; height: auto; border: 1px solid #333; padding: 3px; background-color: #fff; }
-        .image-label { display: block; font-size: 13pt; font-style: italic; margin-top: 10px; color: #000; }
-        
-        .link-box { margin-bottom: 15px; }
-        .link-box code { background: #eee; padding: 2px 5px; font-family: monospace; font-size: 12pt; color: #d35400; }
-
-        /* Ngắt trang khi in */
-        .page-break { page-break-after: always; clear: both; }
-        .ngat_trang{beak-before: page;}
-
-        /* 3. THIẾT LẬP MOBILE (Chống tràn lề trên điện thoại) */
-        @media screen and (max-width: 768px) {
-            
-    <style>
-        :root { --primary: #2c3e50; --secondary: #3498db; --accent: #27ae60; --light: #f4f7f6; }
-        
-        /* 1. THIẾT LẬP CHUNG (Chuẩn văn bản SKKN) */
-        body { 
-            font-family: 'Times New Roman', Times, serif; 
-            font-size: 14pt; /* Cỡ chữ 14 chuẩn */
-            line-height: 1.2; /* Dãn dòng đơn (Single) */
-            margin: 0; 
-            color: #333; 
-            background: var(--light); 
-        }
-        
-        /* Header & Navigation (Phần phụ trợ web) */
-        header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 40px 20px; text-align: center; }
-        .nav-buttons { margin-top: 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .btn { display: inline-block; padding: 10px 25px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: 0.3s; cursor: pointer; border: none; font-size: 12pt;}
-        .btn-pdf { background: #e74c3c; color: white; }
-        .btn-print { background: var(--accent); color: white; }
-        .btn-source { background: var(--primary); color: white; }
-        .btn:hover { opacity: 0.8; transform: translateY(-2px); }
-
-        .container { max-width: 210mm; margin: 0 auto; }
-        
-        /* Typography (Định dạng chữ) */
-        h1, h2, h3 { color: var(--primary); margin-top: 20px; margin-bottom: 10px; }
-        h1 { font-size: 16pt; text-transform: uppercase; }
-        h2 { font-size: 15pt; text-transform: uppercase; }
-        h3 { font-size: 14pt; }
-        p { margin-top: 0; margin-bottom: 12px; text-align: justify; }
-        .indent { text-indent: 1.27cm; } /* Thụt lề đoạn chuẩn Word */
-        
-        /* 2. ĐỊNH DẠNG KHUNG TRANG A4 TRÊN WEB */
-        .paper-section, .cover-page, .toc-page { 
-            width: 210mm; 
-            min-height: 297mm; 
-            padding: 20mm 20mm 20mm 30mm; /* LỀ CHUẨN: Trên 2cm, Phải 2cm, Dưới 2cm, Trái 3cm */
-            margin: 20px auto; 
-            background: white; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
-            box-sizing: border-box; 
-            text-align: justify;
-        }
-
-        /* Định dạng Bìa */
-        .cover-border {
-            border: 4px double #000;
-            height: 100%;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            box-sizing: border-box;
-        }
-        .cover-header { text-align: center; font-size: 15pt; font-weight: bold; line-height: 1.5; }
-        .cover-title-box { text-align: center; margin-top: 40mm; width: 100%; }
-        .cover-label { font-size: 15pt; font-weight: bold; margin-bottom: 20px; }
-        .cover-subject { font-size: 16pt; font-weight: bold; text-transform: uppercase; line-height: 1.4; padding: 0 10px; }
-        .cover-info { margin-top: 40mm; width: 100%; padding-left: 30mm; font-size: 14pt; line-height: 1.5; text-align: left; }
-        .cover-footer { font-size: 14pt; font-weight: bold; margin-bottom: 10mm; }
-        
-        /* Định dạng Mục lục */
-        .toc-title { text-align: center; font-size: 15pt; font-weight: bold; text-transform: uppercase; margin-bottom: 30px; }
-        .toc-list { list-style: none; padding: 0; }
-        .toc-item { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px; font-size: 14pt; }
-        .toc-text { flex: 1; position: relative; overflow: hidden; }
-        .toc-text::after {
-            content: " ..........................................................................................................................................................................................";
-            position: absolute; padding-left: 5px; color: #000; letter-spacing: 2px;
-        }
-        .toc-page-num { padding-left: 10px; font-weight: bold; background: white; z-index: 1; }
-        .toc-sub-item { padding-left: 1.27cm; font-size: 14pt; margin-top: 5px; }
-
-        /* Định dạng Bảng biểu (Tables) */
-        table { width: 100%; border-collapse: collapse; margin: 15px 0; page-break-inside: auto; }
-        tr { page-break-inside: avoid; page-break-after: auto; }
-        th, td { border: 1px solid #000; padding: 8px; text-align: center; font-size: 13pt; }
-        th { background: #f2f2f2; font-weight: bold; text-align: center; }
-
-        /* Định dạng Ảnh minh họa (Images) */
-        .image-wrapper { text-align: center; margin: 20px 0; page-break-inside: avoid; }
-        .image-wrapper img { max-width: 90%; height: auto; border: 1px solid #333; padding: 3px; background-color: #fff; }
-        .image-label { display: block; font-size: 13pt; font-style: italic; margin-top: 10px; color: #000; }
-        
-        .link-box { margin-bottom: 15px; }
-        .link-box code { background: #eee; padding: 2px 5px; font-family: monospace; font-size: 12pt; color: #d35400; }
-
-        /* Ngắt trang khi in */
+        /* Ngắt trang thủ công */
         .page-break { page-break-after: always; clear: both; }
 
-        /* 3. THIẾT LẬP MOBILE (Chống tràn lề trên điện thoại) */
+        /* 4. TỐI ƯU GIAO DIỆN ĐIỆN THOẠI */
         @media screen and (max-width: 768px) {
-            .paper-section, .cover-page, .toc-page {
-                width: 96%;
-                min-height: auto;
-                height: auto;
-                margin: 10px auto;
-                padding: 15px !important; /* Thu gọn lề trên điện thoại để dễ đọc */
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            }
-            .cover-border { padding: 10px; }
-            .cover-title-box { margin-top: 20mm; }
-            .cover-info { margin-top: 20mm; padding-left: 10px; }
-            body { font-size: 16px; }
-            table { display: block; overflow-x: auto; white-space: nowrap; } /* Bảng có thanh cuộn ngang */
-            .toc-text::after { content: none; } /* Tắt dấu chấm mục lục trên mobile */
+            .paper-section, .cover-page, .toc-page { width: 96%; min-height: auto; padding: 15px !important; margin: 10px auto; }
+            .cover-info { padding-left: 10px; }
+            .toc-text::after { content: none; }
+            table { display: block; overflow-x: auto; white-space: nowrap; }
         }
 
-                /* THIẾT LẬP IN ẤN CHUẨN (Print) */
+        /* 5. THIẾT LẬP KHI XUẤT PDF / IN ẤN (Khắc phục lỗi Header & Trang trắng) */
         @media print {
-            /* Ẩn hoàn toàn Header, Nút bấm và Footer của trang web khi in */
-            header, .nav-buttons, footer, .btn { 
+            /* Ẩn hoàn toàn Header, Nút bấm */
+            header, .nav-buttons, .btn, footer { 
                 display: none !important; 
             }
             
-            /* Tùy chỉnh lề máy in khớp Mẫu 1 */
+            /* Máy in sẽ tự lấy lề, tắt lề của web */
+            body, html { margin: 0; padding: 0; background: white; color: #000; }
+            .container { margin: 0; padding: 0; max-width: 100%; }
+
+            /* Ép chuẩn lề theo quy định (Trái 3cm, còn lại 2cm) */
             @page {
                 size: A4;
                 margin: 20mm 20mm 20mm 30mm; 
             }
-            
-            body { 
-                background: white; 
-                font-size: 14pt; 
-                line-height: 1.2; 
-                color: #000; 
-            }
-            
+
+            /* Hủy bỏ bóng đổ, khung viền. Đặc biệt KHÔNG ĐỂ chiều cao cố định để chống trang trắng */
             .paper-section, .cover-page, .toc-page {
                 width: 100% !important;
+                height: auto !important; 
+                min-height: auto !important;
                 padding: 0 !important; 
                 margin: 0 !important;
                 box-shadow: none !important;
                 border: none !important;
             }
-            
-            /* Ngắt trang chuẩn */
-            .cover-page { page-break-after: always; }
+
+            /* Ngăn tiêu đề, bảng biểu bị cắt đôi giữa 2 trang */
+            h2, h3 { page-break-after: avoid; }
+            table, .image-wrapper { page-break-inside: avoid; }
         }
     </style>
-
 
 </head>
 <body>
@@ -626,7 +491,6 @@
     <strong>Phan Văn Tuyến</strong>
     </p>
    <div class=".page-break"></div>
-        <div class=".ngat_trang"></div>
 </div>
 <div class="paper-section">
         <h2 style="text-align: center;">PHỤ LỤC: TÀI LIỆU THAM KHẢO VÀ MINH CHỨNG THỰC TẾ</h2>
