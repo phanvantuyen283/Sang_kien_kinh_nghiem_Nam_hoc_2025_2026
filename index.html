@@ -75,55 +75,82 @@
         }
 
         /* 5. THIẾT LẬP KHI XUẤT PDF / IN ẤN (Khắc phục lỗi Header & Trang trắng) */
-        @media print {
-            /* Ẩn hoàn toàn Header, Nút bấm */
-            header, .nav-buttons, .btn, footer { 
-                display: none !important; 
-            }
-            .ngat_trang{break-before: page;}
-            
-            /* Máy in sẽ tự lấy lề, tắt lề của web */
-            body, html { margin: 0; padding: 0; background: white; color: #000; }
-            .container { margin: 0; padding: 0; max-width: 100%; }
+    @media print {
+    /* 1. Cấu hình trang in */
+    @page {
+        size: A4;
+        margin: 20mm 20mm 20mm 30mm; /* Lề chuẩn: Trái 3cm, các lề khác 2cm */
+    }
 
-            /* Ép chuẩn lề theo quy định (Trái 3cm, còn lại 2cm) */
-            @page {
-                size: A4;
-                margin: 20mm 20mm 20mm 30mm; 
-            }
-            body{ counter-reset: page-count 0;}
-            .paper-section{counter-increment: page-count;
-                          position: relative;}
-            .paper-section::before{
-                content: counter(page-count);
-                position: absolute;
-                top: -12mm; [span_5](start_span)/* Đưa lên lề trên[span_5](end_span) */
-                left: 50%;
-                transform: translateX(-50%);
-                font-family:"Times New Roman", serif;
-                font-style: normal;
-                font-size: 13pt; [span_6](start_span)/* Cỡ chữ theo quy định[span_6](end_span) */
-                color:#000;  
-            }
-            .appendix-section{
-                counter-increment: none;}
-            
+    /* 2. Ẩn các thành phần web không cần thiết */
+    header, .nav-buttons, .btn, footer { 
+        display: none !important; 
+    }
 
-            /* Hủy bỏ bóng đổ, khung viền. Đặc biệt KHÔNG ĐỂ chiều cao cố định để chống trang trắng */
-            .paper-section, .cover-page, .toc-page {
-                width: 100% !important;
-                height: auto !important; 
-                min-height: auto !important;
-                padding: 0 !important; 
-                margin: 0 !important;
-                box-shadow: none !important;
-                border: none !important;
-            }
+    /* 3. Khôi phục bo trang (Page Cover/Border) */
+    body, html { background: white; color: #000; margin: 0; padding: 0; }
+    
+    .paper-section, .cover-page, .toc-page, .appendix-section {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 250mm !important; /* Đảm bảo khung viền đủ dài */
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        display: block !important;
+        position: relative !important; /* Quan trọng để định vị số trang */
+        page-break-after: always;
+    }
 
-            /* Ngăn tiêu đề, bảng biểu bị cắt đôi giữa 2 trang */
-            h2, h3 { page-break-after: avoid; }
-            table, .image-wrapper { page-break-inside: avoid; }
-        }
+    /* Giữ nguyên khung viền đôi cho trang bìa */
+    .cover-border {
+        display: flex !important;
+        border: 4px double #000 !important; 
+        height: 270mm !important;
+        box-sizing: border-box !important;
+        -webkit-print-color-adjust: exact;
+    }
+
+    /* 4. Thiết lập bộ đếm số trang */
+    body { counter-reset: page-count 0; }
+
+    /* Chỉ tăng số trang cho các section nội dung chính */
+    .paper-section {
+        counter-increment: page-count;
+    }
+
+    /* Hiển thị số trang ở lề trên, chính giữa */
+    .paper-section::before {
+        content: counter(page-count);
+        position: absolute;
+        top: -12mm; /* Nằm trong khoảng lề trên 20mm */
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: "Times New Roman", serif;
+        font-size: 13pt;
+        font-style: normal;
+        color: #000;
+        z-index: 9999;
+    }
+
+    /* 5. Xử lý phần Phụ lục (Không đánh số) */
+    .appendix-section {
+        counter-increment: none !important;
+    }
+    .appendix-section::before {
+        content: "" !important; /* Đảm bảo không hiện số trang */
+    }
+
+    /* 6. Fix lỗi ngắt trang và bảng biểu */
+    .page-break { 
+        display: block;
+        height: 0;
+        page-break-after: always;
+    }
+    h2, h3 { page-break-after: avoid; }
+    table, .image-wrapper { page-break-inside: avoid; }
+}
+
     </style>
 
 </head>
@@ -594,7 +621,7 @@
     để xem nội dung, tải file pdf, in nội dung đề tài hoặc xem những file code của hệ thống mi_ni_lms mà tác giả đã xây dựng.</p>
     </div>
     </div>
-    
+    </div>
         <footer style="text-align: center; padding: 20px; color: #777;">
         <p style="text-align:center">&copy; 2026 - Tên người viết: Phan Văn Tuyến<br>
         Đơn vị: Trường Tiểu học Châu Lộc- xã Triệu Lộc - tỉnh Thanh Hóa<br>
