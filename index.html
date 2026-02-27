@@ -3,207 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sáng kiến Kinh nghiệm 2026 - Phan Văn Tuyến- Trường Tiểu học Châu Lộc</title>
+    <title>Sáng kiến Kinh nghiệm 2026 - Trường Tiểu học Châu Lộc</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
+        <style>
         :root { --primary: #2c3e50; --secondary: #3498db; --accent: #27ae60; --light: #f4f7f6; }
-        body { font-family: 'Times New Roman', Times, serif; line-height: 1.6; margin: 0; color: #333; background: var(--light); }
         
-        /* Header & Navigation */
-        header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 50px 20px; text-align: center; }
-        .nav-buttons { margin-top: 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        
-        .container { max-width: 900px; margin: 30px auto; padding: 20px; }
-        
-        /* Typography */
-        h1, h2, h3 { color: var(--primary); }
-        .paper-section { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 30px; text-align: justify; 
-        
+        /* 1. THIẾT LẬP CHUNG (Chuẩn văn bản SKKN) */
+        body { 
+            font-family: 'Times New Roman', Times, serif; 
+            font-size: 14pt; /* Cỡ chữ 14 chuẩn */
+            line-height: 1.2; /* Dãn dòng đơn (Single) */
+            margin: 0; 
+            color: #333; 
+            background: var(--light); 
         }
-        .indent { text-indent: 1cm; }
         
-        /* Components */
-        .btn { display: inline-block; padding: 10px 25px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: 0.3s; cursor: pointer; border: none; }
+        /* Header & Navigation (Phần phụ trợ web) */
+        header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 40px 20px; text-align: center; }
+        .nav-buttons { margin-top: 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn { display: inline-block; padding: 10px 25px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: 0.3s; cursor: pointer; border: none; font-size: 12pt;}
         .btn-pdf { background: #e74c3c; color: white; }
         .btn-print { background: var(--accent); color: white; }
         .btn-source { background: var(--primary); color: white; }
         .btn:hover { opacity: 0.8; transform: translateY(-2px); }
 
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
-        th { background: #f8f9fa; }
-
-        /* Print Optimization */
-        @media print {
-            header, .nav-buttons, .btn, footer, .no-print { display: none !important; }
-            .paper-section { box-shadow: none; padding: 0; margin-bottom: 50px; }
-            body { background: white; font-size: 14pt; }
-            .container { max-width: 100%; }
+        .container { max-width: 210mm; margin: 0 auto; }
+        
+        /* Typography (Định dạng chữ) */
+        h1, h2, h3 { color: var(--primary); margin-top: 20px; margin-bottom: 10px; }
+        h1 { font-size: 16pt; text-transform: uppercase; }
+        h2 { font-size: 15pt; text-transform: uppercase; }
+        h3 { font-size: 14pt; }
+        p { margin-top: 0; margin-bottom: 12px; text-align: justify; }
+        .indent { text-indent: 1.27cm; } /* Thụt lề đoạn chuẩn Word */
+        
+        /* 2. ĐỊNH DẠNG KHUNG TRANG A4 TRÊN WEB */
+        .paper-section, .cover-page, .toc-page { 
+            width: 210mm; 
+            min-height: 297mm; 
+            padding: 20mm 20mm 20mm 30mm; /* LỀ CHUẨN: Trên 2cm, Phải 2cm, Dưới 2cm, Trái 3cm */
+            margin: 20px auto; 
+            background: white; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+            box-sizing: border-box; 
+            text-align: justify;
         }
-        /* CSS chuyên biệt cho trang bìa và ngắt trang */
-        @media screen, print {
-         .cover-page {
-        width: 210mm;
-        height: 297mm;
-        padding: 10mm 15mm 10mm 30mm; /* Lề chuẩn đóng gáy */
-        box-sizing: border-box;
-        margin: 0 auto 30px auto;
-        background: white;
-        position: relative;
-        }
-    .cover-border {
-        border: 4px double #000;
-        height: 100%;
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        box-sizing: border-box;
-    }
-    .cover-header { text-align: center; font-size: 14pt; font-weight: bold; line-height: 1.5; }
-    .cover-title-box { text-align: center; margin-top: 50mm; width: 100%; }
-    .cover-label { font-size: 16pt; font-weight: bold; margin-bottom: 20px; }
-    .cover-subject { font-size: 14pt; font-weight: bold; text-transform: uppercase; line-height: 1.4; padding: 0 10px; }
-    .cover-info { margin-top: 50mm; width: 100%; padding-left: 45mm; font-size: 14pt; line-height: 2; text-align: left; }
-    .cover-footer { font-size: 14pt; font-weight: bold; margin-bottom: 10mm; }
-    
-    /* Lệnh ngắt trang quan trọng */
-    .page-break { page-break-after: always; clear: both; }
-    }
 
-        @media print {
-    body { background: none; }
-    .cover-page { margin: 0; box-shadow: none; }
-}
-    /* Style cho trang Mục lục */
-.toc-page {
-    width: 210mm;
-    min-height: 297mm;
-    padding: 20mm 15mm 20mm 30mm;
-    margin: 0 auto 30px auto;
-    background: white;
-    box-sizing: border-box;
-}
-.toc-title {
-    text-align: center;
-    font-size: 16pt;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom: 30px;
-}
-.toc-list { list-style: none; padding: 0; }
-.toc-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 12px;
-    font-size: 14pt;
-}
-.toc-text { flex: 1; position: relative; overflow: hidden; }
-.toc-text::after {
-    content: " ..........................................................................................................................................................................................";
-    position: absolute;
-    padding-left: 5px;
-    color: #999;
-    }
+        /* Định dạng Bìa */
+        .cover-border {
+            border: 4px double #000;
+            height: 100%;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+        }
+        .cover-header { text-align: center; font-size: 15pt; font-weight: bold; line-height: 1.5; }
+        .cover-title-box { text-align: center; margin-top: 40mm; width: 100%; }
+        .cover-label { font-size: 15pt; font-weight: bold; margin-bottom: 20px; }
+        .cover-subject { font-size: 16pt; font-weight: bold; text-transform: uppercase; line-height: 1.4; padding: 0 10px; }
+        .cover-info { margin-top: 40mm; width: 100%; padding-left: 30mm; font-size: 14pt; line-height: 1.5; text-align: left; }
+        .cover-footer { font-size: 14pt; font-weight: bold; margin-bottom: 10mm; }
+        
+        /* Định dạng Mục lục */
+        .toc-title { text-align: center; font-size: 15pt; font-weight: bold; text-transform: uppercase; margin-bottom: 30px; }
+        .toc-list { list-style: none; padding: 0; }
+        .toc-item { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px; font-size: 14pt; }
+        .toc-text { flex: 1; position: relative; overflow: hidden; }
+        .toc-text::after {
+            content: " ..........................................................................................................................................................................................";
+            position: absolute; padding-left: 5px; color: #000; letter-spacing: 2px;
+        }
         .toc-page-num { padding-left: 10px; font-weight: bold; background: white; z-index: 1; }
-        .toc-sub-item { padding-left: 1.5cm; font-style: italic; font-size: 13pt; margin-top: 5px; }
+        .toc-sub-item { padding-left: 1.27cm; font-size: 14pt; margin-top: 5px; }
 
-    @media print {
-    .toc-page { box-shadow: none; margin: 0; }
-}
-/* Khung chứa ảnh để căn giữa và tạo khoảng cách */
-.image-wrapper {
-    text-align: center;
-    margin: 25px 0;
-    page-break-inside: avoid; /* Ngăn ảnh bị cắt đôi khi in sang trang mới */
-}
+        /* Định dạng Bảng biểu (Tables) */
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; page-break-inside: auto; }
+        tr { page-break-inside: avoid; page-break-after: auto; }
+        th, td { border: 1px solid #000; padding: 8px; text-align: center; font-size: 13pt; }
+        th { background: #f2f2f2; font-weight: bold; text-align: center; }
 
-/* Định dạng ảnh minh họa */
-.image-wrapper img {
-    max-width: 85%; /* Ảnh chiếm tối đa 85% chiều rộng trang giấy */
-    height: auto;
-    border: 1px solid #333; /* Viền mỏng để nhìn chuyên nghiệp */
-    padding: 3px;
-    background-color: #fff;
-}
+        /* Định dạng Ảnh minh họa (Images) */
+        .image-wrapper { text-align: center; margin: 20px 0; page-break-inside: avoid; }
+        .image-wrapper img { max-width: 90%; height: auto; border: 1px solid #333; padding: 3px; background-color: #fff; }
+        .image-label { display: block; font-size: 13pt; font-style: italic; margin-top: 10px; color: #000; }
+        
+        .link-box { margin-bottom: 15px; }
+        .link-box code { background: #eee; padding: 2px 5px; font-family: monospace; font-size: 12pt; color: #d35400; }
 
-/* Định dạng chú thích dưới ảnh */
-.image-label {
-    display: block;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 13pt;
-    font-style: italic;
-    margin-top: 10px;
-    color: #000;
-}
-/* Lệnh ép nội dung sau nó phải sang trang mới */
-.page-break {
-    page-break-before: always;
-    clear: both;
-}
+        /* Ngắt trang khi in */
+        .page-break { page-break-after: always; clear: both; }
 
-}
-/* 1. Thiết lập mặc định cho màn hình lớn (Máy tính) */
-.paper-section, .cover-page, .toc-page {
-    width: 210mm;
-    min-height: 297mm;
-    padding: 20mm 15mm 20mm 30mm;
-    margin: 20px auto;
-    background: white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    box-sizing: border-box;
-}
+        /* 3. THIẾT LẬP MOBILE (Chống tràn lề trên điện thoại) */
+        @media screen and (max-width: 768px) {
+            
+            .paper-section, .toc-page {
+                width: 96%;
+                min-height: auto;
+                height: auto;
+                margin: 10px auto;
+                padding: 15px !important; /* Thu gọn lề trên điện thoại để dễ đọc */
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .cover-page,  {
+                width: 210mm;
+                min-height: auto;
+                height: 290mm;
+                margin: 10px auto;
+                padding: 15px !important; /* Thu gọn lề trên điện thoại để dễ đọc */
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .cover-border { padding: 10px; }
+            .cover-title-box { margin-top: 20mm; }
+            .cover-info { margin-top: 20mm; padding-left: 10px; }
+            body { font-size: 16px; }
+            table { display: block; overflow-x: auto; white-space: nowrap; } /* Bảng có thanh cuộn ngang */
+            .toc-text::after { content: none; } /* Tắt dấu chấm mục lục trên mobile */
+        }
 
-/* 2. THIẾT LẬP DÀNH RIÊNG CHO ĐIỆN THOẠI (Mobile) */
-@media screen and (max-width: 768px) {
-    .paper-section, .cover-page, .toc-page {
-        width: 95%; /* Tự động co lại theo chiều rộng màn hình điện thoại */
-        height: auto; /* Không ép chiều cao để tránh thừa khoảng trắng */
-        min-height: unset;
-        margin: 10px auto;
-        padding: 15px; /* Giảm lề để ưu tiên không gian hiển thị chữ */
-        box-shadow: none;
-        border: 1px solid #ddd;
-    }
-    
-    /* Chỉnh cỡ chữ cho dễ đọc trên điện thoại */
-    body {
-        font-size: 16px; 
-    }
-    
-    /* Đảm bảo ảnh không bị tràn màn hình điện thoại */
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-}
-
-/* 3. THIẾT LẬP CỐ ĐỊNH KHI NHẤN LỆNH IN (Vẫn giữ chuẩn A4) */
-@media print {
-    @page {
-        size: A4;
-        margin: 0;
-    }
-    .paper-section, .cover-page, .toc-page {
-        width: 210mm !important;
-        height: 297mm !important;
-        padding: 20mm 15mm 20mm 30mm !important;
-        margin: 0 !important;
-        box-shadow: none !important;
-        page-break-after: always;
-    }
-}
-
-
+        /* 4. THIẾT LẬP IN ẤN CHUẨN (Print) */
+        @media print {
+            @page {
+                size: A4;
+                margin: 20mm 20mm 20mm 30mm; /* Đẩy lề in trực tiếp vào hệ thống của máy in */
+            }
+            body { background: white; font-size: 14pt; line-height: 1.2; color: #000; }
+            header, .nav-buttons, footer, .btn { display: none !important; }
+            .container { max-width: 100%; margin: 0; padding: 0; }
+            
+            /* Gỡ bỏ các hộp màu và khung viền web khi in */
+            .paper-section, .cover-page, .toc-page {
+                width: 100% !important;
+                min-height: auto !important;
+                padding: 0 !important; 
+                margin: 0 !important;
+                box-shadow: none !important;
+                border: none !important;
+            }
+            .cover-page { height: 100vh !important; } /* Ép bìa chiếm trọn 1 trang in */
+            
+            /* Tối ưu hóa màu sắc in */
+            * { background: transparent !important; color: #000 !important; text-shadow: none !important; box-shadow: none !important; }
+            th { background: #f2f2f2 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
     </style>
+
 </head>
 <body>
 
 <header>
     <h1>TRƯỜNG TIỂU HỌC CHÂU LỘC</h1>
-    <p>Hoạt động viết Sáng kiến kinh nghiệm năm học 2025-2026</p>
+    <p style="text-align: center">Đề tài Sáng kiến kinh nghiệm năm học 2025-2026</p>
     <div class="nav-buttons">
         <a href="SKKN_TUYEN_2026.PDF" class="btn btn-pdf" target="_blank"><i class="fas fa-file-pdf"></i> Tải bản PDF</a>
         <button onclick="window.print()" class="btn btn-print"><i class="fas fa-print"></i> In Sáng kiến</button>
@@ -215,7 +167,7 @@
 <div class="cover-page">
     <div class="cover-border">
         <div class="cover-header">
-            PHÒNG VĂN HÓA XÃ HỘI XÃ TRIỆU LỘC<br>
+            PHÒNG VĂN HÓA = XÃ HỘI XÃ TRIỆU LỘC<br>
             TRƯỜNG TIỂU HỌC CHÂU LỘC<br>
             <div style="width: 150px; height: 1px; background: #000; margin: 10px auto;"></div>
         </div>
@@ -230,7 +182,7 @@
         <div class="cover-info">
             <strong>Lĩnh vực:</strong> Ứng dụng Công nghệ thông tin<br>
             <strong>Người thực hiện:</strong>  Phan Văn Tuyến<br>
-            <strong>Đơn vị:</strong> Trường Tiểu học Châu Lộc
+            <strong>Đơn vị:</strong> Trường Tiểu học Châu Lộc<br><br><br><br><br><br>
         </div>
 
         <div class="cover-footer">
@@ -311,7 +263,7 @@
         <p class="indent"><p>Chuyển đổi số trong giáo dục đang chuyển dịch mạnh mẽ từ việc số hóa tài liệu đơn thuần sang việc kiến tạo các môi trường học tập tương tác và phát triển năng lực toàn diện cho học sinh. Đặc biệt, với sự ra đời của<strong> Thông tư số 02/2025/TT-BGDĐT</strong> ban hành Quy định chuẩn kỹ năng số cho học sinh phổ thông, yêu cầu lồng ghép việc giáo dục năng lực số (An toàn số, Vận hành thiết bị, Giải quyết vấn đề) vào các môn học văn hóa đã trở thành một nhiệm vụ trọng tâm và cấp thiết.</p>
         <p>Bám sát chủ trương của Bộ, Phòng Văn hóa- Xã hội xã Triệu Lộc đã ban hành <strong> Công văn số 496/GDĐT</strong> và <strong> Công văn số 45/GDĐT</strong> yêu cầu giáo viên phải đổi mới phương pháp dạy học theo hướng ứng dụng thực chất công nghệ. Chuyển đổi số phải là quá trình giúp giảm tải áp lực hồ sơ, nâng cao hiệu quả dạy và học thực tế của giáo viên và học sinh chứ không chỉ là sự trình diễn công nghệ mang tính hình thức của giáo viên.</p>
         <p> Về phía Nhà trường, Ban Giám hiệu đã giao nhiệm vụ và tạo điều kiện để giáo viên tham gia đầy đủ các đợt tập huấn Công nghệ thông tin, nhất là ứng dụng AI trong dạy học do các cấp quản lí tổ chức năm 2025.</p>
-        <p>Tuy nhiên, trong thực tiễn giảng dạy tại trường tiểu học, giáo viên đang phải đối mặt với nhiều rào cản mang tính hệ thống. <em>Thứ nhất,</em> về mặt sư phạm, khi một lớp học có nhiều nhóm học sinh phân hóa lớn về năng lực học tập thì quỹ thời gian 30-35 phút cho mỗi tiết học trên lớp là hơi ít để giáo viên vừa tổ chức hoạt động để hình thành kiến thức mới, vừa tổ chức ôn tập chuyên sâu và kèm cặp cá nhân hóa cho từng học sinh. <em>Thứ hai,</em> về cơ sở vật chất, sự hạn chế thiết bị thông minh tại các trường khu vực nông thôn khiến việc tổ chức cho 100% học sinh đồng loạt thực hành các kỹ năng số là khó đạt được. <em>Thứ ba,</em> về mặt công nghệ, các nền tảng kiểm tra trực tuyến hiện hành của bên thứ ba như Azota,Kahot, Word Wall, Quizzi,...  là các nền tảng thương mại ( phải trả phí theo tháng hoặc theo năm để sử dụng), thường chứa quảng cáo <em>(với các phiên bản miễn phí)</em> và không cho phép giáo viên can thiệp sâu vào các thuật toán quản lý (như tính tổng điểm các môn, xếp điểm cho trường hợp học sinh làm nhiều lần, điều hướng môn học từ xa hay tùy biến phản hồi cảm xúc).</p>
+        <p>Tuy nhiên, trong thực tiễn giảng dạy tại trường tiểu học, giáo viên đang phải đối mặt với nhiều rào cản mang tính hệ thống. <em>Thứ nhất,</em> về mặt sư phạm, khi một lớp học có nhiều nhóm học sinh phân hóa lớn về năng lực học tập thì quỹ thời gian 30-35 phút cho mỗi tiết học trên lớp là hơi ít để giáo viên vừa tổ chức hoạt động để hình thành kiến thức mới, vừa tổ chức ôn tập chuyên sâu và kèm cặp cá nhân hóa cho từng học sinh. <em>Thứ hai,</em> về cơ sở vật chất, sự hạn chế thiết bị thông minh tại các trường khu vực nông thôn khiến việc tổ chức cho 100% học sinh đồng loạt thực hành các kỹ năng số là khó đạt được. <em>Thứ ba,</em> về mặt công nghệ, các nền tảng kiểm tra trực tuyến hiện hành của bên thứ ba như Azota,Kahot, Word Wall, Quizzi,...  là các nền tảng thuông mại ( phải trả phí theo tháng hoặc theo năm để sử dụng), thường  ,, hoạt, chứa quảng cáo <em>(với các phiên bản miễn phí)</em> và không cho phép giáo viên can thiệp sâu vào các thuật toán quản lý (như tính tổng điểm các môn, xếp hạngcơ ian lận, điều hướng môn học từ xa hay tùy biến phản hồi cảm xúc).</p>
         <p>Để giải quyết triệt để những mâu thuẫn trên, việc mở thêm không gian ôn tập trên môi trường trực tuyến tại gia đình thông qua mô hình Học tập kết hợp (Blended Learning) là một hướng đi khả thi. Vấn đề đặt ra là: Làm thế nào để một giáo viên tiểu học, không có chuyên môn sâu về lập trình, có thể tự thiết kế và làm chủ một hệ thống quản lý học tập quy mô nhỏ (Mini-LMS) đáp ứng đúng triết lý sư phạm của riêng mình?</p>
         <p>Đứng trước yêu cầu đó, thông qua các kĩ năng có được từ những đợt tập huấn Công nghệ thông tin do UBND xã Triệu Lộc tổ chức, tôi nhận thấy Trí tuệ nhân tạo tạo sinh (Generative AI), đặc biệt là mô hình ngôn ngữ lớn Gemini, mang lại tiềm năng to lớn trong vai trò một trợ lý hỗ trợ lập trình (AI Coding Assistant). Sự kết hợp giữa tư duy sư phạm của giáo viên và khả năng xử lý thuật toán của AI có thể tạo ra những hệ thống giáo dục tùy biến cá nhân độc đáo, tối ưu hóa quá trình ôn tập đa môn và tạo môi trường thực hành năng lực số tự nhiên cho học sinh ngay tại nhà.</p>
         <p>Xuất phát từ những cơ sở lý luận và thực tiễn nêu trên, tôi quyết định chọn đề tài: <strong><em>"Xây dựng và vận hành hệ thống kiểm tra, đánh giá trực tuyến (Mini-LMS) nhằm nâng cao hiệu quả ôn tập đa môn và phát triển năng lực số cho học sinh lớp 4"</em></strong> làm sáng kiến kinh nghiệm trong năm học 2025-2026.</p>
@@ -647,12 +599,14 @@
     <p><strong>3.1. Kho lưu trữ mã nguồn (Github Repository):</strong></p>
     <p><strong>Hội đồng Khoa học</strong> có thể truy cập và xem xét toàn bộ các file html, css, js và cấu hình Firebase đã được thiết lập và sử dụng cho dự án mi_ni_lms bằng hai cách:</p>
     <p>Cách 1: Truy cập vào địa chỉ: <code>"https://phanvantuyen283.github.io/mi_ni_lms"</code></p>
-    <p>Cách 2: Nhấn vào nút bấm Show Source trên trang tải nội dung Đề tài trực tuyến tại địa chỉ <code>"https://phanvantuyen283.github.io/Sang_kien_kinh_nghiem_Nam_hoc_2025_2026"</code></p>
+    <p>Cách 2: Nhấn vào nút bấm Show Source trên trang tải nội dung Đề tài trực tuyến tại địa chỉ:<br> <code>"https://bit.ly/SKKN_2026-tuyen"</code></p>
     </div>
         <div class="link-box">
         <p><strong>3.2. Địa chỉ trải nghiệm người dùng:</strong></p>
-        <p>Địa chỉ truy cập ứng dụng mi_ni_lms:<code> https://phanvantuyen283.github.io/mi_ni_lms/</code></p>
-        <p>Tài khoản thử nghiệm hệ thống <em>(lựa chọn từ menulist):<code></em><strong>---GIÁO VIÊN TEST---</strong></code></p>
+        <p>Địa chỉ truy cập ứng dụng mi_ni_lms:<br>
+        <code> https://phanvantuyen283.github.io/mi_ni_lms/</code></p>
+        <p>Tài khoản thử nghiệm hệ thống <em>(lựa chọn từ menulist):<br>
+        <code></em><strong>---GIÁO VIÊN TEST---</strong></code></p>
         <P>Mật khẩu cho tài khoản thử nghiệm:<strong><code>123456</code></strong></P>
         <p><em><strong>Hội đồng Khoa học</strong> có thể truy nhập vào hệ thống mi_ni_lms của dự án theo đường dẫn và sử dụng tài khoản, mật khẩu thử nghiệm để đánh trải nghiệm người dùng (với vai trò người học) trực tuyến.<br>
     Nếu <strong> Hội đồng Khoa học </strong> yêu cầu trải nghiệm quản trị hệ thống (trải nghiệm và kiểm tra công cụ quản trị) xin vui lòng liên hệ với tác giả.<br> Xin cảm ơn!</em></p>
@@ -660,13 +614,13 @@
     <div class="link-box">
     <p><strong>3.3. Phiên bản trực tuyến của Đề tài :</strong></p>
     <p> Quý thầy cô có thể truy cập vào địa chỉ:<br>
-    <code>"https://phanvantuyen283.github.io/Sang_kien_kinh_nghiem_Nam_hoc_2025_2026/"</code> <br>
+    <code>"https://bit.ly/SKKN_2026-tuyen"</code> <br>
     để xem nội dung, tải file pdf, in nội dung đề tài hoặc xem những file code của hệ thống mi_ni_lms mà tác giả đã xây dựng.</p>
     </div>
     </div>
     </div>
         <footer style="text-align: center; padding: 20px; color: #777;">
-        <p>&copy; 2026 - Tên người viết: Phan Văn Tuyến<br>
+        <p style="text-align:center">&copy; 2026 - Tên người viết: Phan Văn Tuyến<br>
         Đơn vị: Trường Tiểu học Châu Lộc- xã Triệu Lộc - tỉnh Thanh Hóa<br>
         Email: pvtuyen@moet.edu.vn.</p>
         </footer>
